@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart()
     {
         super.onStart();
-/*one        123        1*/
+/*one        666            1*/
         FirebaseUser currentUser = mAuth.getCurrentUser();
         
         if(currentUser == null)
