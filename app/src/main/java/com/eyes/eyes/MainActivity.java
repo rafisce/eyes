@@ -11,7 +11,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
     private Toolbar mToolbar;
-
+  
     private FirebaseAuth mAuth;
 
     @Override
