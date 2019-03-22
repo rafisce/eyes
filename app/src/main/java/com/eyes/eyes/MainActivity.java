@@ -25,12 +25,12 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(mToolbar);
         getSupportActionBar().setTitle("");
     }
-   
+
     @Override
     protected void onStart()
     {
         super.onStart();
-
+/*one 1*/
         FirebaseUser currentUser = mAuth.getCurrentUser();
         
         if(currentUser == null)
