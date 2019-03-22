@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "454375668000",
+    "firebase_url": "https://eyes-f419c.firebaseio.com",
+    "project_id": "eyes-f419c",
+    "storage_bucket": "eyes-f419c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:454375668000:android:632f0c7c9c852745",
+        "android_client_info": {
+          "package_name": "com.eyes.eyes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "454375668000-ib8d2ipnlhdiv94u8t1lg3ah1r0edjg1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.eyes.eyes",
+            "certificate_hash": "840b4f5269770690a57382870ab0be2148098cac"
+          }
+        },
+        {
+          "client_id": "454375668000-8h9ofkupc9p5jevd6kmqlf37bp3hsjg3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCKDgMpot9kDSCLwDPHjwS7GaRJztnpe-E"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "454375668000-8h9ofkupc9p5jevd6kmqlf37bp3hsjg3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
