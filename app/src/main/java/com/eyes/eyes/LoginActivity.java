@@ -28,7 +28,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText loginPassword;
 
     private ProgressDialog loadingBar;
-
+    // this method overrides
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
