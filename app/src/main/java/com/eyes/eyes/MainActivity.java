@@ -40,5 +40,5 @@ public class MainActivity extends AppCompatActivity {
          startActivity(startPageIntent);
          finish();
         }
-    }//moshe
+    }//mosheshange
 }
