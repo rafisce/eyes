@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -103,9 +104,25 @@ public class RegisterActivity extends AppCompatActivity {
                                 storeUserDefaultDataReference = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId);
                                 storeUserDefaultDataReference.child("user_name").setValue(user.getName());
                                 storeUserDefaultDataReference.child("language").setValue(user.getLanguage());
+                                storeUserDefaultDataReference.child("user_email").setValue(user.getEmail());
                                 Calendar calendar = Calendar.getInstance();
                                 String created_date = DateFormat.getDateInstance().format(calendar.getTime());
-                                storeUserDefaultDataReference.child("create_date").setValue(created_date);
+                                storeUserDefaultDataReference.child("create_date").setValue(created_date)
+                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                                if (task.isSuccessful())
+
+                                                {
+                                                    Intent mainIntent = new Intent(RegisterActivity.this, MainActivity.class);
+                                                    mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                                    startActivity(mainIntent);
+                                                    finish();
+                                                }
+
+                                            }
+                                        });
+
 
                             } else {
                                 Toast.makeText(RegisterActivity.this, "קרתה טעותת נסה שוב", Toast.LENGTH_SHORT);

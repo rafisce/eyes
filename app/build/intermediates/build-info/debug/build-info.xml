@@ -3,28 +3,28 @@
     abi="x86"
     api-level="28"
     build-mode="FULL"
-    density="560dpi"
+    density="xxhdpi"
     format="10"
     plugin-version="3.1.4"
-    timestamp="1553260483729"
+    timestamp="1553370104153"
     token="-2922934802807594168"
     verifier="FULL_BUILD_REQUESTED" >
 
     <task
         name="javac"
-        duration="1156" />
+        duration="0" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="122" />
+        duration="0" />
     <task
         name="verifier"
-        duration="64" />
+        duration="0" />
 
     <artifact
-        location="C:\Users\Rafi\AndroidStudioProjects\eyes\app\build\intermediates\split-apk\debug\slices\slice_5.apk"
+        location="C:\Users\Rafi\AndroidStudioProjects\eyes\app\build\intermediates\resources\instant-run\debug\resources-debug.apk"
         type="SPLIT" />
     <artifact
         location="C:\Users\Rafi\AndroidStudioProjects\eyes\app\build\intermediates\split-apk\debug\slices\slice_1.apk"
@@ -34,9 +34,6 @@
         type="SPLIT" />
     <artifact
         location="C:\Users\Rafi\AndroidStudioProjects\eyes\app\build\intermediates\split-apk\debug\slices\slice_0.apk"
-        type="SPLIT" />
-    <artifact
-        location="C:\Users\Rafi\AndroidStudioProjects\eyes\app\build\intermediates\resources\instant-run\debug\resources-debug.apk"
         type="SPLIT" />
     <artifact
         location="C:\Users\Rafi\AndroidStudioProjects\eyes\app\build\intermediates\split-apk\debug\slices\slice_4.apk"
@@ -49,6 +46,9 @@
         type="SPLIT" />
     <artifact
         location="C:\Users\Rafi\AndroidStudioProjects\eyes\app\build\intermediates\split-apk\debug\slices\slice_8.apk"
+        type="SPLIT" />
+    <artifact
+        location="C:\Users\Rafi\AndroidStudioProjects\eyes\app\build\intermediates\split-apk\debug\slices\slice_5.apk"
         type="SPLIT" />
     <artifact
         location="C:\Users\Rafi\AndroidStudioProjects\eyes\app\build\intermediates\split-apk\debug\dep\dependencies.apk"
@@ -65,10 +65,10 @@
 
     <build
         build-mode="FULL"
-        timestamp="1553260483729"
+        timestamp="1553370104153"
         verifier="FULL_BUILD_REQUESTED" >
         <artifact
-            location="C:\Users\Rafi\AndroidStudioProjects\eyes\app\build\intermediates\split-apk\debug\slices\slice_5.apk"
+            location="C:\Users\Rafi\AndroidStudioProjects\eyes\app\build\intermediates\resources\instant-run\debug\resources-debug.apk"
             type="SPLIT" />
         <artifact
             location="C:\Users\Rafi\AndroidStudioProjects\eyes\app\build\intermediates\split-apk\debug\slices\slice_1.apk"
@@ -78,9 +78,6 @@
             type="SPLIT" />
         <artifact
             location="C:\Users\Rafi\AndroidStudioProjects\eyes\app\build\intermediates\split-apk\debug\slices\slice_0.apk"
-            type="SPLIT" />
-        <artifact
-            location="C:\Users\Rafi\AndroidStudioProjects\eyes\app\build\intermediates\resources\instant-run\debug\resources-debug.apk"
             type="SPLIT" />
         <artifact
             location="C:\Users\Rafi\AndroidStudioProjects\eyes\app\build\intermediates\split-apk\debug\slices\slice_4.apk"
@@ -93,6 +90,9 @@
             type="SPLIT" />
         <artifact
             location="C:\Users\Rafi\AndroidStudioProjects\eyes\app\build\intermediates\split-apk\debug\slices\slice_8.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\Users\Rafi\AndroidStudioProjects\eyes\app\build\intermediates\split-apk\debug\slices\slice_5.apk"
             type="SPLIT" />
         <artifact
             location="C:\Users\Rafi\AndroidStudioProjects\eyes\app\build\intermediates\split-apk\debug\dep\dependencies.apk"

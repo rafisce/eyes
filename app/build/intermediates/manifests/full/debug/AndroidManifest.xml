@@ -8,6 +8,8 @@
         android:minSdkVersion="21"
         android:targetSdkVersion="28" />
 
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
@@ -21,6 +23,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:testOnly="true"
         android:theme="@style/AppTheme" >
         <activity android:name="com.eyes.eyes.WelcomActivity" >
             <intent-filter>
@@ -38,6 +41,9 @@
             android:name="com.eyes.eyes.RegisterActivity"
             android:parentActivityName="com.eyes.eyes.StartPageActivity" />
         <activity android:name="com.eyes.eyes.MainActivityHeb" />
+        <activity
+            android:name="com.eyes.eyes.UserInfoActivity"
+            android:parentActivityName="com.eyes.eyes.MainActivity" />
         <activity
             android:name="com.google.firebase.auth.internal.FederatedSignInActivity"
             android:excludeFromRecents="true"

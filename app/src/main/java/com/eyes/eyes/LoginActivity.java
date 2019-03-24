@@ -16,7 +16,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-//c3 3
+
 public class LoginActivity extends AppCompatActivity {
 
     private Toolbar mToolbar;
@@ -24,11 +24,11 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
 
     private Button loginBtn;
-    private EditText loginmail;
+    private EditText loginMail;
     private EditText loginPassword;
 
     private ProgressDialog loadingBar;
-    // this method overrides
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +42,7 @@ public class LoginActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
 
-        loginmail = (EditText) findViewById(R.id.login_email);
+        loginMail = (EditText) findViewById(R.id.login_email);
         loginPassword =(EditText) findViewById(R.id.login_password);
 
         loginBtn = (Button) findViewById(R.id.login_button);
@@ -52,7 +52,7 @@ public class LoginActivity extends AppCompatActivity {
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                User user = new User("",loginmail.getText().toString(),loginPassword.getText().toString());
+                User user = new User("",loginMail.getText().toString(),loginPassword.getText().toString());
                 loginUserAccount(user);
             }
         });
@@ -82,6 +82,8 @@ public class LoginActivity extends AppCompatActivity {
                            {
                                Intent mainIntent = new Intent(LoginActivity.this,MainActivity.class);
                                mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                               startActivity(mainIntent);
+                               finish();
                            }
                            else
                            {

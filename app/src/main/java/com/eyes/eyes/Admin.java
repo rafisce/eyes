@@ -12,5 +12,5 @@ public class Admin extends User{
         super(name,email,password,language);
     }
 
-//jghjgjgh
+
 }
