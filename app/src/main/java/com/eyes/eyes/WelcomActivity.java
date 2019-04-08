@@ -28,6 +28,15 @@ public class WelcomActivity extends AppCompatActivity {
 
                      startActivity(mainIntent);
                 }
+                /*                try {
+                    sleep(3000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                finally {
+                     Intent mainIntent = new Intent(WelcomActivity.this,MainActivity.class);
+
+                     startActivity(mainIntent);*/
             }
         };
         thread.start();

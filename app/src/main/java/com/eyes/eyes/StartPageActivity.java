@@ -34,15 +34,7 @@ public class StartPageActivity extends AppCompatActivity {
                 startActivity(loginIntent);
             }
         });
-
-
-        /*        AlreadyHaveAccountButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent loginIntent = new Intent(StartPageActivity.this,LoginActivity.class);
-                startActivity(loginIntent);
-            }
-        });*/    }
+    }
 
 
 }
