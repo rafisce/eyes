@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\Rafi\\AndroidStudioProjects\\eyes\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v24\\values-v24.xml",
+            "outputFile": "C:\\Users\\shaked astemker\\AndroidStudioProjects\\eyes\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v24\\values-v24.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Rafi\\.gradle\\caches\\transforms-1\\files-1.1\\support-media-compat-27.1.1.aar\\434eb67bc7f2a4a355e1f9cccb14bfec\\res\\values-v24\\values-v24.xml",
+                    "source": "C:\\Users\\shaked astemker\\.gradle\\caches\\transforms-1\\files-1.1\\support-media-compat-27.1.1.aar\\0ab14b8d7ab29ffc2d1035b2c9ca7d23\\res\\values-v24\\values-v24.xml",
                     "from": {
                         "startLines": "2,3,4,5",
                         "startColumns": "4,4,4,4",
@@ -21,7 +21,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\Rafi\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\09f6e5542c18ed1ad207b74141a5e004\\res\\values-v24\\values-v24.xml",
+                    "source": "C:\\Users\\shaked astemker\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\c9909fa62b81bd58e2b46d120ea1149f\\res\\values-v24\\values-v24.xml",
                     "from": {
                         "startLines": "2,3",
                         "startColumns": "4,4",
