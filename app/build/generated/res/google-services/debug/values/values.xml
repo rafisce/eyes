@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="default_web_client_id" translatable="false">454375668000-8h9ofkupc9p5jevd6kmqlf37bp3hsjg3.apps.googleusercontent.com</string>
-    <string name="firebase_database_url" translatable="false">https://eyes-f419c.firebaseio.com</string>
-    <string name="gcm_defaultSenderId" translatable="false">454375668000</string>
-    <string name="google_api_key" translatable="false">AIzaSyCKDgMpot9kDSCLwDPHjwS7GaRJztnpe-E</string>
-    <string name="google_app_id" translatable="false">1:454375668000:android:632f0c7c9c852745</string>
-    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyCKDgMpot9kDSCLwDPHjwS7GaRJztnpe-E</string>
-    <string name="google_storage_bucket" translatable="false">eyes-f419c.appspot.com</string>
-    <string name="project_id" translatable="false">eyes-f419c</string>
+    <string name="default_web_client_id" translatable="false">131760619439-sg17bbc9upddh3pttk1tuttunvt8m1qh.apps.googleusercontent.com</string>
+    <string name="firebase_database_url" translatable="false">https://eyes-45129.firebaseio.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">131760619439</string>
+    <string name="google_api_key" translatable="false">AIzaSyAAs6gD2rKVPP0Ve8-L2o2v8sOsZfHBa94</string>
+    <string name="google_app_id" translatable="false">1:131760619439:android:632f0c7c9c852745</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyAAs6gD2rKVPP0Ve8-L2o2v8sOsZfHBa94</string>
+    <string name="google_storage_bucket" translatable="false">eyes-45129.appspot.com</string>
+    <string name="project_id" translatable="false">eyes-45129</string>
 </resources>
