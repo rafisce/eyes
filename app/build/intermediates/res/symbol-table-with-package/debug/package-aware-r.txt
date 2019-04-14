@@ -95,6 +95,13 @@ attr buttonStyle
 attr buttonStyleSmall
 attr buttonTint
 attr buttonTintMode
+attr cardBackgroundColor
+attr cardCornerRadius
+attr cardElevation
+attr cardMaxElevation
+attr cardPreventCornerOverlap
+attr cardUseCompatPadding
+attr cardViewStyle
 attr chainUseRtl
 attr checkboxStyle
 attr checkedTextViewStyle
@@ -128,6 +135,11 @@ attr contentInsetLeft
 attr contentInsetRight
 attr contentInsetStart
 attr contentInsetStartWithNavigation
+attr contentPadding
+attr contentPaddingBottom
+attr contentPaddingLeft
+attr contentPaddingRight
+attr contentPaddingTop
 attr contentScrim
 attr controlBackground
 attr coordinatorLayoutStyle
@@ -471,6 +483,10 @@ color bright_foreground_material_dark
 color bright_foreground_material_light
 color button_material_dark
 color button_material_light
+color cardview_dark_background
+color cardview_light_background
+color cardview_shadow_end_color
+color cardview_shadow_start_color
 color colorAccent
 color colorPrimary
 color colorPrimaryDark
@@ -503,6 +519,7 @@ color dim_foreground_material_light
 color error_color_material
 color foreground_material_dark
 color foreground_material_light
+color grey
 color highlighted_text_material_dark
 color highlighted_text_material_light
 color material_blue_grey_800
@@ -617,6 +634,9 @@ dimen abc_text_size_subhead_material
 dimen abc_text_size_subtitle_material_toolbar
 dimen abc_text_size_title_material
 dimen abc_text_size_title_material_toolbar
+dimen cardview_compat_inset_shadow
+dimen cardview_default_elevation
+dimen cardview_default_radius
 dimen compat_button_inset_horizontal_material
 dimen compat_button_inset_vertical_material
 dimen compat_button_padding_horizontal_material
@@ -811,6 +831,7 @@ drawable design_snackbar_background
 drawable docs
 drawable googleg_disabled_color_18
 drawable googleg_standard_color_18
+drawable green_play
 drawable ic_launcher_background
 drawable ic_launcher_foreground
 drawable ic_mic
@@ -834,6 +855,7 @@ drawable speaker_off
 drawable speaker_on
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
+drawable unckecked
 drawable welcome
 id ALT
 id CTRL
@@ -902,11 +924,14 @@ id design_menu_item_action_area
 id design_menu_item_action_area_stub
 id design_menu_item_text
 id design_navigation_view
+id dest
+id destinations_toolbar
 id dimensions
 id direct
 id disableHome
 id doc_toolbar
 id edit_query
+id email
 id end
 id end_padder
 id enterAlways
@@ -917,6 +942,7 @@ id expanded_menu
 id fill
 id fill_horizontal
 id fill_vertical
+id first
 id fixed
 id forever
 id ghost_view
@@ -929,6 +955,7 @@ id icon_group
 id icon_only
 id ifRoom
 id image
+id imageView
 id info
 id invisible
 id italic
@@ -936,6 +963,9 @@ id item_touch_helper_previous_elevation
 id lang_settings
 id lang_text_view
 id largeLabel
+id last
+id last_connected
+id last_connected_toolbar
 id left
 id light
 id line1
@@ -946,6 +976,7 @@ id login_button
 id login_email
 id login_password
 id login_toolbar
+id logout
 id main_app_bar
 id main_page_toolbar
 id masked
@@ -955,6 +986,7 @@ id mic
 id middle
 id mini
 id multiply
+id name
 id navigation_header_container
 id need_account_button
 id never
@@ -974,11 +1006,14 @@ id power_off
 id progress_circular
 id progress_horizontal
 id radio
+id recyclerView
 id register_email
 id register_name
 id register_password
 id register_toolbar
 id report
+id reports
+id reports_toolbar
 id right
 id right_icon
 id right_side
@@ -1048,9 +1083,12 @@ id txtResult
 id uniform
 id up
 id useLogo
+id use_dest
 id user_docs
 id user_email_text_view
 id user_name_text_view
+id users
+id users_toolbar
 id view_offset_helper
 id visible
 id wide
@@ -1095,13 +1133,18 @@ layout abc_search_dropdown_item_icons_2line
 layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
+layout activity_admin
+layout activity_destinations
 layout activity_input
+layout activity_last_connected
 layout activity_login
 layout activity_main
 layout activity_main_heb
 layout activity_register
+layout activity_reports
 layout activity_start_page
 layout activity_user_info
+layout activity_users
 layout activity_welcom
 layout app_bar_layout
 layout design_bottom_navigation_item
@@ -1118,6 +1161,8 @@ layout design_navigation_item_subheader
 layout design_navigation_menu
 layout design_navigation_menu_item
 layout design_text_input_password_icon
+layout destination_item
+layout last_connected
 layout notification_action
 layout notification_action_tombstone
 layout notification_media_action
@@ -1133,10 +1178,12 @@ layout notification_template_media
 layout notification_template_media_custom
 layout notification_template_part_chronometer
 layout notification_template_part_time
+layout report_item
 layout select_dialog_item_material
 layout select_dialog_multichoice_material
 layout select_dialog_singlechoice_material
 layout support_simple_spinner_dropdown_item
+layout user_item
 mipmap ic_launcher
 mipmap ic_launcher_round
 string abc_action_bar_home_description
@@ -1198,6 +1245,7 @@ string google_api_key
 string google_app_id
 string google_crash_reporting_api_key
 string google_storage_bucket
+string name
 string password_toggle_content_description
 string path_password_eye
 string path_password_eye_mask_strike_through
@@ -1218,6 +1266,7 @@ style Base_AlertDialog_AppCompat_Light
 style Base_Animation_AppCompat_Dialog
 style Base_Animation_AppCompat_DropDownUp
 style Base_Animation_AppCompat_Tooltip
+style Base_CardView
 style Base_DialogWindowTitle_AppCompat
 style Base_DialogWindowTitleBackground_AppCompat
 style Base_TextAppearance_AppCompat
@@ -1371,6 +1420,9 @@ style Base_Widget_AppCompat_Toolbar
 style Base_Widget_AppCompat_Toolbar_Button_Navigation
 style Base_Widget_Design_AppBarLayout
 style Base_Widget_Design_TabLayout
+style CardView
+style CardView_Dark
+style CardView_Light
 style Platform_AppCompat
 style Platform_AppCompat_Light
 style Platform_ThemeOverlay_AppCompat
@@ -1601,6 +1653,7 @@ styleable AppCompatTheme android_windowIsFloating android_windowAnimationStyle a
 styleable BottomNavigationView elevation itemBackground itemIconTint itemTextColor menu
 styleable BottomSheetBehavior_Layout behavior_hideable behavior_peekHeight behavior_skipCollapsed
 styleable ButtonBarLayout allowStacking
+styleable CardView android_minWidth android_minHeight cardBackgroundColor cardCornerRadius cardElevation cardMaxElevation cardPreventCornerOverlap cardUseCompatPadding contentPadding contentPaddingBottom contentPaddingLeft contentPaddingRight contentPaddingTop
 styleable CollapsingToolbarLayout collapsedTitleGravity collapsedTitleTextAppearance contentScrim expandedTitleGravity expandedTitleMargin expandedTitleMarginBottom expandedTitleMarginEnd expandedTitleMarginStart expandedTitleMarginTop expandedTitleTextAppearance scrimAnimationDuration scrimVisibleHeightTrigger statusBarScrim title titleEnabled toolbarId
 styleable CollapsingToolbarLayout_Layout layout_collapseMode layout_collapseParallaxMultiplier
 styleable ColorStateListItem android_color android_alpha alpha

@@ -5,6 +5,8 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 
@@ -25,6 +27,7 @@ public class UserInfoActivity extends AppCompatActivity {
     private  TextView lang;
     private TextView created_date;
     private Toolbar mToolbar;
+    private Button dest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,8 +36,10 @@ public class UserInfoActivity extends AppCompatActivity {
 
         mToolbar = (Toolbar) findViewById(R.id.doc_toolbar);
         setSupportActionBar(mToolbar);
-        getSupportActionBar().setTitle("דף ראשי");
+        getSupportActionBar().setTitle("מנהל");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        dest = (Button) findViewById(R.id.use_dest);
 
 
         mAuth = FirebaseAuth.getInstance();
@@ -59,6 +64,14 @@ public class UserInfoActivity extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
+            }
+        });
+
+        dest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(UserInfoActivity.this, DestinationsActivity.class);
+                startActivity(intent);
             }
         });
 

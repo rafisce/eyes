@@ -4,7 +4,7 @@ public class Common extends User
 {
     public static final String TYPE = "common";
 
-    public static String getTYPE() {
+    public String getTYPE() {
         return TYPE;
     }
 

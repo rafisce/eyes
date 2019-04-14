@@ -12,6 +12,7 @@ import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.net.Uri;
 import android.os.Environment;
+import android.speech.RecognizerIntent;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -29,6 +30,11 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -37,18 +43,22 @@ import java.io.File;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 import static android.os.Looper.prepare;
 
 public class MainActivity extends AppCompatActivity {
+    private static final int REQUEST_CODE_SPEECH = 1000;
     private Toolbar mToolbar;
 
     private static final String TAG = "MainActivity";
     private static final int REQUEST_CODE = 1;
     private static final int REQUEST_CODE2 = 2;
 
-
+    private DatabaseReference current_user,current_user2;
     private FirebaseAuth mAuth;
     private StorageReference mStorage;
     private ImageButton power_off;
@@ -89,8 +99,8 @@ public class MainActivity extends AppCompatActivity {
         power_off.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
-                System.exit(0);
+                mAuth.signOut();
+                Logout();
             }
         });
 
@@ -115,9 +125,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent docsPageIntent = new Intent(MainActivity.this, UserInfoActivity.class);
-                docsPageIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(docsPageIntent);
-                finish();
+
             }
         });
 
@@ -136,6 +145,13 @@ public class MainActivity extends AppCompatActivity {
             }
 
 
+        });
+
+        navigate_mic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                speak();
+            }
         });
 
 
@@ -192,6 +208,7 @@ public class MainActivity extends AppCompatActivity {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.RECORD_AUDIO}, REQUEST_CODE);
         }
     }
+
     private void requestWriteExternalStoragePermission() {
         if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
             new AlertDialog.Builder(this)
@@ -231,7 +248,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
     private void uploadAudio() {
 
 
@@ -254,6 +270,78 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private void speak() {
+
+        Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
+        intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "תאמר את היעד בבקשה");
+
+        try {
+            startActivityForResult(intent, REQUEST_CODE_SPEECH);
+        } catch (Exception e) {
+
+        }
+
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case REQUEST_CODE_SPEECH: {
+                if (resultCode == RESULT_OK && data != null) {
+
+                    Toast.makeText(MainActivity.this, "hjhj", Toast.LENGTH_LONG).show();
+                    final ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+                    final String res = result.get(0);
+
+                    current_user2 = FirebaseDatabase.getInstance().getReference().child("Users").child(mAuth.getCurrentUser().getUid());
+                    current_user2.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+
+                            long count = (long) dataSnapshot.child("dest_counter").getValue();
+                            count++;
+                            current_user2.child("dest_counter").setValue(count);  // <= Change to ++count
+
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+                            // throw an error if setValue() is rejected
+                            throw databaseError.toException();
+                        }
+                    });
+                    current_user2 = FirebaseDatabase.getInstance().getReference().child("Users").child(mAuth.getCurrentUser().getUid());
+                    current_user2.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+
+                            long count = (long) dataSnapshot.child("dest_counter").getValue();
+                            current_user2.child("dest_list").child(String.valueOf(count)).setValue(res);  // <= Change to ++count
+
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+                            // throw an error if setValue() is rejected
+                            throw databaseError.toException();
+                        }
+                    });
+                }
+            }
+            break;
+        }
+    }
+
+    private void Logout() {
+        Intent startPageIntent = new Intent(MainActivity.this, StartPageActivity.class);
+        startPageIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(startPageIntent);
+        finish();
+    }
 
     @Override
     protected void onStart() {
@@ -261,11 +349,33 @@ public class MainActivity extends AppCompatActivity {
 
         FirebaseUser currentUser = mAuth.getCurrentUser();
 
-        if (currentUser == null) {
-            Intent startPageIntent = new Intent(MainActivity.this, StartPageActivity.class);
-            startPageIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(startPageIntent);
-            finish();
+        if (currentUser == null || mAuth.getCurrentUser().getUid() == null) {
+            Logout();
+        } else {
+
+            String currentUserId = mAuth.getCurrentUser().getUid();
+            DatabaseReference storeUserDefaultDataReference = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId);
+            DateFormat dateFormat = new SimpleDateFormat("dd/MM/yy HH:mm");
+            String last_connected = dateFormat.format(new Date());
+            storeUserDefaultDataReference.child("last_connected").setValue(last_connected);
+
+            current_user = FirebaseDatabase.getInstance().getReference().child("Users").child(mAuth.getCurrentUser().getUid());
+            current_user.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.child("user_type").getValue().toString().equals("admin")) {
+                        Intent mainIntent = new Intent(MainActivity.this, AdminActivity.class);
+                        mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(mainIntent);
+                        finish();
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
         }
     }
 }

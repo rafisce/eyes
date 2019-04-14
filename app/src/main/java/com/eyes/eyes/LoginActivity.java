@@ -16,12 +16,18 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class LoginActivity extends AppCompatActivity {
 
     private Toolbar mToolbar;
 
     private FirebaseAuth mAuth;
+    private DatabaseReference current_user;
 
     private Button loginBtn;
     private EditText loginMail;
@@ -43,7 +49,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
         loginMail = (EditText) findViewById(R.id.login_email);
-        loginPassword =(EditText) findViewById(R.id.login_password);
+        loginPassword = (EditText) findViewById(R.id.login_password);
 
         loginBtn = (Button) findViewById(R.id.login_button);
 
@@ -52,46 +58,64 @@ public class LoginActivity extends AppCompatActivity {
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                User user = new User("",loginMail.getText().toString(),loginPassword.getText().toString());
+                User user = new User("", loginMail.getText().toString(), loginPassword.getText().toString());
                 loginUserAccount(user);
             }
         });
     }
 
-    private void loginUserAccount(User user)
-    {
-        if(TextUtils.isEmpty(user.getEmail()))
-        {
-            Toast.makeText(LoginActivity.this,"אנא הכנס אימיל",Toast.LENGTH_SHORT).show();
+    private void loginUserAccount(final User user) {
+        if (TextUtils.isEmpty(user.getEmail())) {
+            Toast.makeText(LoginActivity.this, "אנא הכנס אימיל", Toast.LENGTH_SHORT).show();
         }
-        if(TextUtils.isEmpty(user.getPassword()))
-        {
-            Toast.makeText(LoginActivity.this,"אנא הכנס סיסמא",Toast.LENGTH_SHORT).show();
-        }
-        else
-        {
-           loadingBar.setTitle("מתחבר לחשבון");
-           loadingBar.setMessage("אנא המתן בזמן שאנחנו מאמתים את חשבונך");
-           loadingBar.show();
+        if (TextUtils.isEmpty(user.getPassword())) {
+            Toast.makeText(LoginActivity.this, "אנא הכנס סיסמא", Toast.LENGTH_SHORT).show();
+        } else {
+            loadingBar.setTitle("מתחבר לחשבון");
+            loadingBar.setMessage("אנא המתן בזמן שאנחנו מאמתים את חשבונך");
+            loadingBar.show();
 
-           mAuth.signInWithEmailAndPassword(user.getEmail(),user.getPassword())
-                   .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                       @Override
-                       public void onComplete(@NonNull Task<AuthResult> task) {
-                           if(task.isSuccessful())
-                           {
-                               Intent mainIntent = new Intent(LoginActivity.this,MainActivity.class);
-                               mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                               startActivity(mainIntent);
-                               finish();
-                           }
-                           else
-                           {
-                               Toast.makeText(LoginActivity.this,"שם משתמש או סיסמא לא נכונים, אנא בדוק את שם משתמש והסיסמא",Toast.LENGTH_SHORT).show();
-                           }
-                           loadingBar.dismiss();
-                       }
-                   });
+
+            mAuth.signInWithEmailAndPassword(user.getEmail(), user.getPassword())
+                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                current_user = FirebaseDatabase.getInstance().getReference().child("Users").child(mAuth.getCurrentUser().getUid());
+                                current_user.addValueEventListener(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                        if (dataSnapshot.child("user_type").getValue().toString().equals("common")) {
+                                            Intent mainIntent = new Intent(LoginActivity.this, MainActivity.class);
+                                            mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                            startActivity(mainIntent);
+                                            finish();
+                                        }
+                                        else if(dataSnapshot.child("user_type").getValue().toString().equals("admin"))
+                                        {
+                                            Intent mainIntent = new Intent(LoginActivity.this, AdminActivity.class);
+                                            mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                            startActivity(mainIntent);
+                                            finish();
+                                        }
+
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                    }
+                                });
+
+
+                            } else {
+                                Toast.makeText(LoginActivity.this, "שם משתמש או סיסמא לא נכונים, אנא בדוק את שם משתמש והסיסמא", Toast.LENGTH_SHORT).show();
+                            }
+                            loadingBar.dismiss();
+                        }
+                    });
         }
+
+
     }
 }

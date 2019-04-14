@@ -64,7 +64,7 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                User user = new User(RegisterUserName.getText().toString(), RegisterUserEmail.getText().toString(), RegisterUserPassword.getText().toString(), "eng");
+                Common user = new Common(RegisterUserName.getText().toString(), RegisterUserEmail.getText().toString(), RegisterUserPassword.getText().toString(), "eng");
                 RegisterAccount(user);
             }
         });
@@ -72,7 +72,7 @@ public class RegisterActivity extends AppCompatActivity {
         createHebAccountBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                User user = new User(RegisterUserName.getText().toString(), RegisterUserEmail.getText().toString(), RegisterUserPassword.getText().toString(), "heb");
+                Common user = new Common(RegisterUserName.getText().toString(), RegisterUserEmail.getText().toString(), RegisterUserPassword.getText().toString(), "heb");
                 RegisterAccount(user);
             }
         });
@@ -80,7 +80,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
 
-    private void RegisterAccount(final User user) {
+    private void RegisterAccount(final Common user) {
         Log.d("RegisterAccount", user.getName());
         if (TextUtils.isEmpty(user.getName())) {
             Toast.makeText(RegisterActivity.this, "אנא רשום את שמך", Toast.LENGTH_LONG).show();
@@ -105,6 +105,10 @@ public class RegisterActivity extends AppCompatActivity {
                                 storeUserDefaultDataReference.child("user_name").setValue(user.getName());
                                 storeUserDefaultDataReference.child("language").setValue(user.getLanguage());
                                 storeUserDefaultDataReference.child("user_email").setValue(user.getEmail());
+                                storeUserDefaultDataReference.child("user_type").setValue(user.getTYPE());
+                                storeUserDefaultDataReference.child("records").setValue(0);
+                                storeUserDefaultDataReference.child("dest_counter").setValue(0);
+
                                 Calendar calendar = Calendar.getInstance();
                                 String created_date = DateFormat.getDateInstance().format(calendar.getTime());
                                 storeUserDefaultDataReference.child("create_date").setValue(created_date)
