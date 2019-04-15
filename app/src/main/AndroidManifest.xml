@@ -18,7 +18,8 @@
         <activity
             android:name=".UsersActivity"
             android:parentActivityName=".AdminActivity" />
-        <activity android:name=".ReportsActivity" />
+        <activity android:name=".ReportsActivity"
+            android:parentActivityName=".AdminActivity"/>
         <activity
             android:name=".LastConnectedActivity"
             android:parentActivityName=".AdminActivity" />

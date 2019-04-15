@@ -904,6 +904,7 @@ id center_horizontal
 id center_vertical
 id chains
 id checkbox
+id checked
 id chronometer
 id clip_horizontal
 id clip_vertical
@@ -926,6 +927,7 @@ id design_menu_item_text
 id design_navigation_view
 id dest
 id destinations_toolbar
+id details
 id dimensions
 id direct
 id disableHome
@@ -955,7 +957,6 @@ id icon_group
 id icon_only
 id ifRoom
 id image
-id imageView
 id info
 id invisible
 id italic
@@ -1002,11 +1003,13 @@ id parentPanel
 id parent_matrix
 id percent
 id pin
+id play
 id power_off
 id progress_circular
 id progress_horizontal
 id radio
 id recyclerView
+id recyclerView1
 id register_email
 id register_name
 id register_password

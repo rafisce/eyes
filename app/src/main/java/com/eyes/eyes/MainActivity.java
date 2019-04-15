@@ -18,6 +18,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -47,6 +48,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Map;
 
 import static android.os.Looper.prepare;
 
@@ -254,20 +256,40 @@ public class MainActivity extends AppCompatActivity {
         mProgress.setTitle("העלאה");
         mProgress.setMessage("אנא המתן בזמן שאנחנו מעלים את ההקלטה");
         mProgress.show();
-        DateFormat df = new SimpleDateFormat("dd MM yyyy, HH:mm");
-        String date = df.format(Calendar.getInstance().getTime());
 
-        StorageReference filepath = mStorage.child("audio_report").child(mAuth.getCurrentUser().getUid()).child(date);
-        Uri uri = Uri.fromFile(new File(myFile));
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Reports_counter");
+        ref.addListenerForSingleValueEvent(
+                new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        long count = (long) dataSnapshot.getValue();
+                        StorageReference filepath = mStorage.child("audio_report").child(String.valueOf(count));
+                        Uri uri = Uri.fromFile(new File(myFile));
+                        count++;
+                        DatabaseReference temp = FirebaseDatabase.getInstance().getReference().child("Reports_counter");
+                        Log.d("Dd",uri.toString());
+                        temp.setValue(count);
+                        final long finalCount = count;
+                        filepath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                            @Override
+                            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                final String uri = taskSnapshot.getDownloadUrl().toString();
+                                DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("audio_uri").child(String.valueOf(finalCount -1));
+                                ref.setValue(uri);
+                                mProgress.dismiss();
 
-        filepath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                mProgress.dismiss();
 
+                            }
+                        });
 
-            }
-        });
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        //handle databaseError
+                    }
+                });
+
     }
 
     private void speak() {

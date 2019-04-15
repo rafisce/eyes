@@ -40,8 +40,7 @@ public class DestinationsAdapter extends RecyclerView.Adapter<DestinationsAdapte
     @Override
     public void onBindViewHolder(@NonNull DestinationsAdapter.DestinationsViewHolder holder, int position) {
         Destination current = mDestinations.get(position);
-        holder.dest.setText(current.getNum()+". "+current.getDest());
-
+        holder.dest.setText(current.getDest()+". "+current.getNum());
     }
 
     @Override

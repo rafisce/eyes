@@ -50,13 +50,12 @@ public class LastConnectedActivity extends AppCompatActivity {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         //Get map of users in datasnapshot
-                        collectUsers((Map<String,Object>) dataSnapshot.getValue());
+                        collectUsers((Map<String, Object>) dataSnapshot.getValue());
 
                         mRecyclerView = findViewById(R.id.recyclerView);
                         mRecyclerView.setHasFixedSize(true);
                         mLayoutManager = new LinearLayoutManager(LastConnectedActivity.this);
                         mAdapter = new LastConnectedAdapter(useList);
-
                         mRecyclerView.setLayoutManager(mLayoutManager);
                         mRecyclerView.setAdapter(mAdapter);
                     }
@@ -68,22 +67,25 @@ public class LastConnectedActivity extends AppCompatActivity {
                 });
     }
 
-    private void collectUsers(Map<String,Object> users) {
+    private void collectUsers(Map<String, Object> users) {
 
 
         //iterate through each user, ignoring their UID
-        for (Map.Entry<String, Object> entry : users.entrySet()){
+        for (Map.Entry<String, Object> entry : users.entrySet()) {
 
             //Get user map
             Map singleUser = (Map) entry.getValue();
             //Get phone field and append to list
-            useList.add(new LastConected((String)singleUser.get("user_name"),(String)singleUser.get("last_connected")));
-                Collections.sort(useList, new Comparator<LastConected>() {
+            if (singleUser.get("user_type").equals("worker")) {
+                useList.add(new LastConected((String) singleUser.get("user_name"), (String) singleUser.get("last_connected")));
+            }
+            Collections.sort(useList, new Comparator<LastConected>() {
                 public int compare(LastConected m1, LastConected m2) {
                     return m1.getTime().compareTo(m2.getTime());
                 }
+
             });
-                Collections.reverse(useList);
+            Collections.reverse(useList);
 
         }
 

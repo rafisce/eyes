@@ -41,20 +41,21 @@ public class DestinationsActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         String current = mAuth.getCurrentUser().getUid();
 
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Users").child(current);
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Users").child(current).child("dest_list");
         ref.addListenerForSingleValueEvent(
                 new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         //Get map of users in datasnapshot
-                        collectDestinations((Map<String,Object>) dataSnapshot.child("dest_list").getValue());
+                        collectDestinations((ArrayList<String>) dataSnapshot.getValue());
 
-                        mRecyclerView = findViewById(R.id.recyclerView);
+                        mRecyclerView = findViewById(R.id.recyclerView1);
                         mRecyclerView.setHasFixedSize(true);
                         mLayoutManager = new LinearLayoutManager(DestinationsActivity.this);
                         mAdapter = new DestinationsAdapter(destList);
                         mRecyclerView.setLayoutManager(mLayoutManager);
                         mRecyclerView.setAdapter(mAdapter);
+
                     }
 
                     @Override
@@ -64,23 +65,23 @@ public class DestinationsActivity extends AppCompatActivity {
                 });
     }
 
-    private void collectDestinations(Map<String,Object> users) {
+    private void collectDestinations(ArrayList<String> destinations) {
 
-         int count = 0;
+         int count = destinations.size();
         //iterate through each user, ignoring their UID
-        for (Map.Entry<String, Object> entry : users.entrySet()){
+        for (String entry : destinations){
 
             //Get user map
-            Map singleUser = (Map) entry.getValue();
+            String dest = entry;
             //Get phone field and append to list
-            destList.add(new Destination((String)singleUser.get(count),String.valueOf(count)));
-            count++;
+            destList.add(new Destination(dest,String.valueOf(count-1)));
+            count--;
             Collections.sort(destList, new Comparator<Destination>() {
                 public int compare(Destination m1, Destination m2) {
                     return m1.getNum().compareTo(m2.getNum());
                 }
             });
-            Collections.reverse(destList);
+
 
         }
 
