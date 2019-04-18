@@ -31,7 +31,7 @@ public class LastConnectedActivity extends AppCompatActivity {
 
     private Toolbar mToolbar;
 
-    private ArrayList<LastConected> useList = new ArrayList<>();
+    private ArrayList<LastConected> userList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,12 +50,12 @@ public class LastConnectedActivity extends AppCompatActivity {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         //Get map of users in datasnapshot
-                        collectUsers((Map<String, Object>) dataSnapshot.getValue());
+                        userList = collectUsers((Map<String, Object>) dataSnapshot.getValue());
 
                         mRecyclerView = findViewById(R.id.recyclerView);
                         mRecyclerView.setHasFixedSize(true);
                         mLayoutManager = new LinearLayoutManager(LastConnectedActivity.this);
-                        mAdapter = new LastConnectedAdapter(useList);
+                        mAdapter = new LastConnectedAdapter(userList);
                         mRecyclerView.setLayoutManager(mLayoutManager);
                         mRecyclerView.setAdapter(mAdapter);
                     }
@@ -67,9 +67,9 @@ public class LastConnectedActivity extends AppCompatActivity {
                 });
     }
 
-    private void collectUsers(Map<String, Object> users) {
+    public ArrayList<LastConected> collectUsers(Map<String, Object> users) {
 
-
+        ArrayList<LastConected> useList = new ArrayList<>();
         //iterate through each user, ignoring their UID
         for (Map.Entry<String, Object> entry : users.entrySet()) {
 
@@ -88,7 +88,7 @@ public class LastConnectedActivity extends AppCompatActivity {
             Collections.reverse(useList);
 
         }
-
+        return useList;
     }
 
 }

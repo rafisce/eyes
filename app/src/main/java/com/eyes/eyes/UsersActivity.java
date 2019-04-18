@@ -25,7 +25,7 @@ public class UsersActivity extends AppCompatActivity {
 
     private Toolbar mToolbar;
 
-    private ArrayList<LastConected> useList = new ArrayList<>();
+//    private ArrayList<LastConected> useList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,11 +44,11 @@ public class UsersActivity extends AppCompatActivity {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         //Get map of users in datasnapshot
-                        collectUsers((Map<String,Object>) dataSnapshot.getValue());
+
                         mRecyclerView = findViewById(R.id.recyclerView);
                         mRecyclerView.setHasFixedSize(true);
                         mLayoutManager = new LinearLayoutManager(UsersActivity.this);
-                        mAdapter = new UsersAdapter(useList);
+                        mAdapter = new UsersAdapter(collectUsers((Map<String,Object>) dataSnapshot.getValue()));
                         mRecyclerView.setLayoutManager(mLayoutManager);
                         mRecyclerView.setAdapter(mAdapter);
                     }
@@ -60,16 +60,17 @@ public class UsersActivity extends AppCompatActivity {
                 });
     }
 
-    private void collectUsers(Map<String,Object> users) {
-
-
+    public ArrayList<LastConected> collectUsers(Map<String,Object> users) {
+        ArrayList<LastConected> useList = new ArrayList<>();
         //iterate through each user, ignoring their UID
         for (Map.Entry<String, Object> entry : users.entrySet()){
 
             //Get user map
             Map singleUser = (Map) entry.getValue();
             //Get phone field and append to list
-            useList.add(new LastConected((String)singleUser.get("user_name"),(String)singleUser.get("user_email"),(String)singleUser.get("create_date"),(String)singleUser.get("last_connected"),(String)singleUser.get("user_type")));
+            if(((String)singleUser.get("user_type")).equals("common")) {
+                useList.add(new LastConected((String) singleUser.get("user_name"), (String) singleUser.get("user_email"), (String) singleUser.get("create_date"), (String) singleUser.get("last_connected"), (String) singleUser.get("user_type")));
+            }
             Collections.sort(useList, new Comparator<LastConected>() {
                 public int compare(LastConected m1, LastConected m2) {
                     return m1.getTime().compareTo(m2.getTime());
@@ -78,6 +79,6 @@ public class UsersActivity extends AppCompatActivity {
             Collections.reverse(useList);
 
         }
-
+        return useList;
     }
 }

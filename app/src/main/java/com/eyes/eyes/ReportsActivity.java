@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Map;
 
 
 public class ReportsActivity extends AppCompatActivity {
@@ -30,9 +31,7 @@ public class ReportsActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager mLayoutManager;
 
     private Toolbar mToolbar;
-
-    private ArrayList<Report> repList = new ArrayList<>();
-   // private ArrayList<String> DownloadUris = new ArrayList<>();
+    private ArrayList<Report> reportList;
 
 
     @Override
@@ -46,24 +45,24 @@ public class ReportsActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
-
-        DatabaseReference refUri = FirebaseDatabase.getInstance().getReference().child("audio_uri");
+        DatabaseReference refUri = FirebaseDatabase.getInstance().getReference().child("Reports");
         refUri.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                collectReports((ArrayList<String>) dataSnapshot.getValue());
+
+                reportList = collectReports((Map<String, Object>) dataSnapshot.getValue());
 
                 mRecyclerView = findViewById(R.id.recyclerView);
                 mRecyclerView.setHasFixedSize(true);
                 mLayoutManager = new LinearLayoutManager(ReportsActivity.this);
-                mAdapter = new ReportAdapter(repList);
+                mAdapter = new ReportAdapter(reportList);
                 mRecyclerView.setLayoutManager(mLayoutManager);
                 mRecyclerView.setAdapter(mAdapter);
 
                 mAdapter.setOnItemClickListener(new ReportAdapter.OnItemClickListener() {
                     @Override
                     public void OnPlayClick(int position) {
-                        playAudio(repList.get(position).getUri());
+                        playAudio(reportList.get(position).getUri());
                     }
                 });
             }
@@ -75,28 +74,30 @@ public class ReportsActivity extends AppCompatActivity {
         });
 
 
-
     }
 
-    private void collectReports(ArrayList<String> reps) {
-
-        int count = reps.size();
+    public ArrayList<Report> collectReports(Map<String, Object> reps) {
+        ArrayList<Report> repList = new ArrayList<>();
+        reps.remove(reps.get("@"));
         //iterate through each user, ignoring their UID
-        for (String entry : reps) {
+        for (Map.Entry<String, Object> entry : reps.entrySet()) {
 
-            //Get user map
-            String rep = entry;
+            Map singleReport = (Map) entry.getValue();
+
             //Get phone field and append to list
-            repList.add(new Report(String.valueOf(count - 1), rep));
-            count--;
+
+            repList.add(new Report((String) singleReport.get("user"), (String) singleReport.get("number"), (String) singleReport.get("uri"), (String) singleReport.get("record_date")));
+
             Collections.sort(repList, new Comparator<Report>() {
                 public int compare(Report m1, Report m2) {
-                    return m1.name.compareTo(m2.name);
+                    return m1.getNumber().compareTo(m2.getNumber());
                 }
+
             });
-
-
+//            Collections.reverse(repList);
         }
+
+        return repList;
     }
 
 

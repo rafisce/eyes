@@ -16,7 +16,7 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ReportView
     private ArrayList<Report> mReports;
     private OnItemClickListener mListener;
 
-    public interface OnItemClickListener{
+    public interface OnItemClickListener {
         void OnPlayClick(int position);
 
     }
@@ -26,13 +26,18 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ReportView
     }
 
     public static class ReportViewHolder extends RecyclerView.ViewHolder {
-        public TextView time;
-        private ImageView play;
+        public TextView number;
+        public TextView name;
+        public TextView date;
         public ImageView check;
+        private ImageView play;
+
 
         public ReportViewHolder(View itemView, final OnItemClickListener listener) {
             super(itemView);
-            time = itemView.findViewById(R.id.details);
+            number = itemView.findViewById(R.id.number);
+            name = itemView.findViewById(R.id.name);
+            date = itemView.findViewById(R.id.date);
             play = itemView.findViewById(R.id.play);
             check = itemView.findViewById(R.id.checked);
 
@@ -40,9 +45,9 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ReportView
             play.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if(listener!=null){
+                    if (listener != null) {
                         int pos = getAdapterPosition();
-                        if(pos!=RecyclerView.NO_POSITION){
+                        if (pos != RecyclerView.NO_POSITION) {
                             listener.OnPlayClick(pos);
                         }
                     }
@@ -60,14 +65,16 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ReportView
     @Override
     public ReportAdapter.ReportViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.report_item, parent, false);
-        ReportAdapter.ReportViewHolder rvh = new ReportAdapter.ReportViewHolder(v,mListener);
+        ReportAdapter.ReportViewHolder rvh = new ReportAdapter.ReportViewHolder(v, mListener);
         return rvh;
     }
 
     @Override
     public void onBindViewHolder(@NonNull ReportAdapter.ReportViewHolder holder, int position) {
         Report current = mReports.get(position);
-        holder.time.setText(current.getName());
+        holder.name.setText(current.getName());
+        holder.date.setText(current.getDate());
+        holder.number.setText(current.getNumber()+".");
 
 
     }

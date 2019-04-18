@@ -91,7 +91,7 @@ public class LoginActivity extends AppCompatActivity {
                                             startActivity(mainIntent);
                                             finish();
                                         }
-                                        else if(dataSnapshot.child("user_type").getValue().toString().equals("admin"))
+                                        else if(checkAdmin(dataSnapshot.child("user_type").getValue().toString()))
                                         {
                                             Intent mainIntent = new Intent(LoginActivity.this, AdminActivity.class);
                                             mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -117,5 +117,11 @@ public class LoginActivity extends AppCompatActivity {
         }
 
 
+
+
+    }
+
+    public boolean checkAdmin(String str){
+       return str.equals("admin");
     }
 }

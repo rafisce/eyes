@@ -27,7 +27,7 @@ public class DestinationsActivity extends AppCompatActivity {
 
     private Toolbar mToolbar;
 
-    private ArrayList<Destination> destList = new ArrayList<>();
+    private ArrayList<Destination> destinationList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,12 +47,12 @@ public class DestinationsActivity extends AppCompatActivity {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         //Get map of users in datasnapshot
-                        collectDestinations((ArrayList<String>) dataSnapshot.getValue());
+                        destinationList = collectDestinations((ArrayList<String>) dataSnapshot.getValue());
 
                         mRecyclerView = findViewById(R.id.recyclerView1);
                         mRecyclerView.setHasFixedSize(true);
                         mLayoutManager = new LinearLayoutManager(DestinationsActivity.this);
-                        mAdapter = new DestinationsAdapter(destList);
+                        mAdapter = new DestinationsAdapter(destinationList);
                         mRecyclerView.setLayoutManager(mLayoutManager);
                         mRecyclerView.setAdapter(mAdapter);
 
@@ -65,16 +65,16 @@ public class DestinationsActivity extends AppCompatActivity {
                 });
     }
 
-    private void collectDestinations(ArrayList<String> destinations) {
-
-         int count = destinations.size();
+    public ArrayList<Destination> collectDestinations(ArrayList<String> destinations) {
+        ArrayList<Destination> destList = new ArrayList<>();
+        int count = destinations.size();
         //iterate through each user, ignoring their UID
-        for (String entry : destinations){
+        for (String entry : destinations) {
 
             //Get user map
             String dest = entry;
             //Get phone field and append to list
-            destList.add(new Destination(dest,String.valueOf(count-1)));
+            destList.add(new Destination(dest, String.valueOf(count - 1)));
             count--;
             Collections.sort(destList, new Comparator<Destination>() {
                 public int compare(Destination m1, Destination m2) {
@@ -84,6 +84,6 @@ public class DestinationsActivity extends AppCompatActivity {
 
 
         }
-
+        return destList;
     }
 }

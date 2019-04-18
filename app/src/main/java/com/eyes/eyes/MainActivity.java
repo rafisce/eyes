@@ -60,10 +60,11 @@ public class MainActivity extends AppCompatActivity {
     private static final int REQUEST_CODE = 1;
     private static final int REQUEST_CODE2 = 2;
 
-    private DatabaseReference current_user,current_user2;
+    private DatabaseReference current_user, current_user2;
     private FirebaseAuth mAuth;
     private StorageReference mStorage;
     private ImageButton power_off;
+    private ImageButton lang_set;
     private ImageButton speaker;
     private ImageButton report;
     private ImageButton navigate_mic;
@@ -88,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
         power_off = (ImageButton) findViewById(R.id.power_off);
         user_docs = (ImageButton) findViewById(R.id.user_docs);
         speaker = (ImageButton) findViewById(R.id.speaker);
+        lang_set = (ImageButton) findViewById(R.id.lang_settings);
         mProgress = new ProgressDialog(this);
 
         myFile = Environment.getExternalStorageDirectory().getAbsolutePath();
@@ -132,7 +134,29 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        lang_set.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DatabaseReference temp = FirebaseDatabase.getInstance().getReference().child("Users").child(mAuth.getCurrentUser().getUid());
+                temp.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        String lng = changeLanguage(dataSnapshot.child("language").getValue().toString());
+                        DatabaseReference temp2 = FirebaseDatabase.getInstance().getReference().child("Users").child(mAuth.getCurrentUser().getUid());
+                        temp2.child("language").setValue(lng);
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+            }
+        });
+
         report.setOnTouchListener(new View.OnTouchListener() {
+
             @Override
             public boolean onTouch(View v, MotionEvent event) {
 
@@ -141,6 +165,9 @@ public class MainActivity extends AppCompatActivity {
 
                 } else if (event.getAction() == MotionEvent.ACTION_UP) {
                     stopRecording();
+                }
+                else if(event.getAction() == MotionEvent.ACTION_BUTTON_PRESS){
+
                 }
 
                 return false;
@@ -157,6 +184,14 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    public String changeLanguage(String language) {
+        if (language.equals("eng"))
+            return "heb";
+        else if(language.equals("heb"))
+            return "eng";
+        return "eng";
     }
 
     private void startRecording() {
@@ -252,12 +287,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void uploadAudio() {
 
-
         mProgress.setTitle("העלאה");
         mProgress.setMessage("אנא המתן בזמן שאנחנו מעלים את ההקלטה");
         mProgress.show();
 
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Reports_counter");
+        final DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Reports_counter");
         ref.addListenerForSingleValueEvent(
                 new ValueEventListener() {
                     @Override
@@ -267,17 +301,35 @@ public class MainActivity extends AppCompatActivity {
                         Uri uri = Uri.fromFile(new File(myFile));
                         count++;
                         DatabaseReference temp = FirebaseDatabase.getInstance().getReference().child("Reports_counter");
-                        Log.d("Dd",uri.toString());
                         temp.setValue(count);
                         final long finalCount = count;
                         filepath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                             @Override
                             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                                final String uri = taskSnapshot.getDownloadUrl().toString();
-                                DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("audio_uri").child(String.valueOf(finalCount -1));
-                                ref.setValue(uri);
-                                mProgress.dismiss();
 
+                                final String tempUri = taskSnapshot.getDownloadUrl().toString();
+
+                                DatabaseReference tempUser = FirebaseDatabase.getInstance().getReference().child("Users").child(mAuth.getCurrentUser().getUid());
+                                tempUser.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                        String usr = dataSnapshot.child("user_name").getValue().toString();
+                                        final String uri = tempUri;
+                                        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Reports").child(String.valueOf(finalCount - 1));
+                                        ref.child("number").setValue(String.valueOf(finalCount));
+                                        ref.child("uri").setValue(uri);
+                                        ref.child("user").setValue(usr);
+                                        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yy HH:mm");
+                                        String record_date = dateFormat.format(new Date());
+                                        ref.child("record_date").setValue(record_date);
+                                        mProgress.dismiss();
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                    }
+                                });
 
                             }
                         });
@@ -314,44 +366,43 @@ public class MainActivity extends AppCompatActivity {
         switch (requestCode) {
             case REQUEST_CODE_SPEECH: {
                 if (resultCode == RESULT_OK && data != null) {
-
-                    Toast.makeText(MainActivity.this, "hjhj", Toast.LENGTH_LONG).show();
                     final ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
                     final String res = result.get(0);
+                    if (checkDest(res)) {
+                        current_user2 = FirebaseDatabase.getInstance().getReference().child("Users").child(mAuth.getCurrentUser().getUid());
+                        current_user2.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
 
-                    current_user2 = FirebaseDatabase.getInstance().getReference().child("Users").child(mAuth.getCurrentUser().getUid());
-                    current_user2.addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
+                                long count = (long) dataSnapshot.child("dest_counter").getValue();
+                                count++;
+                                current_user2.child("dest_counter").setValue(count);  // <= Change to ++count
 
-                            long count = (long) dataSnapshot.child("dest_counter").getValue();
-                            count++;
-                            current_user2.child("dest_counter").setValue(count);  // <= Change to ++count
+                            }
 
-                        }
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+                                // throw an error if setValue() is rejected
+                                throw databaseError.toException();
+                            }
+                        });
+                        current_user2 = FirebaseDatabase.getInstance().getReference().child("Users").child(mAuth.getCurrentUser().getUid());
+                        current_user2.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
 
-                        @Override
-                        public void onCancelled(DatabaseError databaseError) {
-                            // throw an error if setValue() is rejected
-                            throw databaseError.toException();
-                        }
-                    });
-                    current_user2 = FirebaseDatabase.getInstance().getReference().child("Users").child(mAuth.getCurrentUser().getUid());
-                    current_user2.addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
+                                long count = (long) dataSnapshot.child("dest_counter").getValue();
+                                current_user2.child("dest_list").child(String.valueOf(count)).setValue(res);  // <= Change to ++count
 
-                            long count = (long) dataSnapshot.child("dest_counter").getValue();
-                            current_user2.child("dest_list").child(String.valueOf(count)).setValue(res);  // <= Change to ++count
+                            }
 
-                        }
-
-                        @Override
-                        public void onCancelled(DatabaseError databaseError) {
-                            // throw an error if setValue() is rejected
-                            throw databaseError.toException();
-                        }
-                    });
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+                                // throw an error if setValue() is rejected
+                                throw databaseError.toException();
+                            }
+                        });
+                    }
                 }
             }
             break;
@@ -399,5 +450,9 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
+    }
+
+    public boolean checkDest(String str){
+        return !str.equals("");
     }
 }

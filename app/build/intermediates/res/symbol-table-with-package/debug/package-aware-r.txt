@@ -918,6 +918,7 @@ id created_date_text_view
 id custom
 id customPanel
 id dark
+id date
 id decor_content_parent
 id default_activity_button
 id design_bottom_sheet
@@ -927,7 +928,6 @@ id design_menu_item_text
 id design_navigation_view
 id dest
 id destinations_toolbar
-id details
 id dimensions
 id direct
 id disableHome
@@ -996,6 +996,7 @@ id normal
 id notification_background
 id notification_main_column
 id notification_main_column_container
+id number
 id packed
 id parallax
 id parent
