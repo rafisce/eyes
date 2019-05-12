@@ -14,4 +14,16 @@ public class ExampleUnitTest {
     public void addition_isCorrect() {
         assertEquals(4, 2 + 2);
     }
+
 }
+/*
+        public class ExampleUnitTest2{
+    @Test
+    public void addition_isCorrect() {
+        assertEquals(4, 2 + 2);
+        mRecyclerView.setHasFixedSize(true);
+        mLayoutManager = new LinearLayoutManager(ReportsActivity.this);
+
+
+
+ */
