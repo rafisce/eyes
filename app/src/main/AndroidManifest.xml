@@ -13,13 +13,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DestinationsActivity"
-            android:parentActivityName=".UserInfoActivity"></activity>
+        <activity android:name=".WorkerActivity" />
+        <activity
+            android:name=".CreateWorker"
+            android:parentActivityName=".AdminActivity" />
+        <activity
+            android:name=".DestinationsActivity"
+            android:parentActivityName=".UserInfoActivity" />
         <activity
             android:name=".UsersActivity"
             android:parentActivityName=".AdminActivity" />
-        <activity android:name=".ReportsActivity"
-            android:parentActivityName=".AdminActivity"/>
+        <activity
+            android:name=".ReportsActivity"
+            android:parentActivityName=".AdminActivity" />
         <activity
             android:name=".LastConnectedActivity"
             android:parentActivityName=".AdminActivity" />

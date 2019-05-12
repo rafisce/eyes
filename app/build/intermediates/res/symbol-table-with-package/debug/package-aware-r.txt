@@ -914,6 +914,8 @@ id contentPanel
 id coordinator
 id creat_account_button
 id creat_heb_account_button
+id create_worker
+id create_worker_toolbar
 id created_date_text_view
 id custom
 id customPanel
@@ -987,6 +989,7 @@ id mic
 id middle
 id mini
 id multiply
+id my_details
 id name
 id navigation_header_container
 id need_account_button
@@ -1091,12 +1094,19 @@ id use_dest
 id user_docs
 id user_email_text_view
 id user_name_text_view
+id user_worker
 id users
 id users_toolbar
 id view_offset_helper
 id visible
 id wide
 id withText
+id worker_email
+id worker_last_connected
+id worker_logout
+id worker_name
+id worker_password
+id worker_user_reports
 id wrap
 id wrap_content
 integer abc_config_activityDefaultDur
@@ -1138,6 +1148,7 @@ layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
 layout activity_admin
+layout activity_create_worker
 layout activity_destinations
 layout activity_input
 layout activity_last_connected
@@ -1150,6 +1161,7 @@ layout activity_start_page
 layout activity_user_info
 layout activity_users
 layout activity_welcom
+layout activity_worker
 layout app_bar_layout
 layout design_bottom_navigation_item
 layout design_bottom_sheet_dialog

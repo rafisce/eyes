@@ -442,6 +442,12 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(mainIntent);
                         finish();
                     }
+                    else if(dataSnapshot.child("user_type").getValue().toString().equals("worker")){
+                        Intent mainIntent = new Intent(MainActivity.this, WorkerActivity.class);
+                        mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(mainIntent);
+                        finish();
+                    }
                 }
 
                 @Override

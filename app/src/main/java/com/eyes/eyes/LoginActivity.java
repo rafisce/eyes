@@ -25,14 +25,11 @@ import com.google.firebase.database.ValueEventListener;
 public class LoginActivity extends AppCompatActivity {
 
     private Toolbar mToolbar;
-
     private FirebaseAuth mAuth;
     private DatabaseReference current_user;
-
     private Button loginBtn;
     private EditText loginMail;
     private EditText loginPassword;
-
     private ProgressDialog loadingBar;
 
     @Override
@@ -94,6 +91,12 @@ public class LoginActivity extends AppCompatActivity {
                                         else if(checkAdmin(dataSnapshot.child("user_type").getValue().toString()))
                                         {
                                             Intent mainIntent = new Intent(LoginActivity.this, AdminActivity.class);
+                                            mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                            startActivity(mainIntent);
+                                            finish();
+                                        }
+                                        else if(dataSnapshot.child("user_type").getValue().toString().equals("worker")){
+                                            Intent mainIntent = new Intent(LoginActivity.this, WorkerActivity.class);
                                             mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                             startActivity(mainIntent);
                                             finish();

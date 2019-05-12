@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CreateWorker">
+
+
+    <include layout="@layout/app_bar_layout"
+        android:id="@+id/create_worker_toolbar"></include>
+
+
+    <EditText
+        android:id="@+id/worker_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="113dp"
+        android:ems="10"
+        android:hint="שם.."
+        android:inputType="textMultiLine"
+        android:padding="15dp" />
+
+    <EditText
+        android:id="@+id/worker_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/worker_name"
+        android:ems="10"
+        android:hint="אימייל.."
+        android:inputType="textMultiLine|textWebEmailAddress"
+        android:padding="15dp" />
+
+    <EditText
+        android:id="@+id/worker_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/worker_email"
+        android:ems="10"
+        android:hint="סיסמא.."
+        android:inputType="textMultiLine|textPassword"
+        android:padding="15dp" />
+
+
+    <Button
+        android:id="@+id/create_worker"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="0dp"
+        android:layout_weight="1"
+        android:background="@color/colorPrimaryDark"
+        android:text="צור משתמש תפעולי"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        android:textSize="20sp" />
+
+</RelativeLayout>
