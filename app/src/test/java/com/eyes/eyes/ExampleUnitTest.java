@@ -14,22 +14,30 @@ public class ExampleUnitTest {
     public void addition_isCorrect() {
         assertEquals(4, 2 + 2);
     }
-
 }
-/*
-        public class ExampleUnitTest2{
-    @Test
-    public void addition_isCorrect() {
-        assertEquals(4, 2 + 2);
-        mRecyclerView.setHasFixedSize(true);
-        mLayoutManager = new LinearLayoutManager(ReportsActivity.this);
 
-                public class ExampleUnitTest2{
+
+/*
+public class ExampleUnitTest {
     @Test
     public void addition_isCorrect() {
-        assertEquals(4, 2 + 2);
-        mRecyclerView.setHasFixedSize(true);
-        mLayoutManager = new LinearLayoutManager(ReportsActivity.this);
-              lang.setText("language: "+dataSnapshot.child("language").getValue().toString());
+        assertEquals(4)
+         time = itemView.findViewById(R.id.details);
+            play = itemView.findViewById(R.id.play);
+            check = itemView.findViewById(R.id.checked);
+    }
+}
+
+
+public class ExampleUnitTest {
+    @Test
+    public void addition_isCorrect() {
+        assertEquals(4)
+         time = itemView.findViewById(R.id.details);
+            play = itemView.findViewById(R.id.play);
+             time = itemView.findViewById(R.id.details);
+            check = itemView.findViewById(R.id.checked);
+    }
+}
 
  */
