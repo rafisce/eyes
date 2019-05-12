@@ -77,3 +77,41 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ReportView
         return mReports.size();
     }
 }
+
+/*
+    public ReportAdapter.ReportViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.report_item, parent, false);
+        ReportAdapter.ReportViewHolder rvh = new ReportAdapter.ReportViewHolder(v,mListener);
+        return rvh;
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull ReportAdapter.ReportViewHolder holder, int position) {
+        Report current = mReports.get(position);
+        holder.time.setText(current.getName());
+
+
+    }
+ */
+
+/*
+            super(itemView);
+            time = itemView.findViewById(R.id.details);
+            play = itemView.findViewById(R.id.play);
+            check = itemView.findViewById(R.id.checked);
+
+
+            play.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(listener!=null){
+                        int pos = getAdapterPosition();
+                        if(pos!=RecyclerView.NO_POSITION){
+                            listener.OnPlayClick(pos);
+                        }
+                    }
+                }
+            });
+        }
+    }
+ */
