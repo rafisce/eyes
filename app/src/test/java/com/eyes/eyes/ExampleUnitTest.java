@@ -24,6 +24,12 @@ public class ExampleUnitTest {
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(ReportsActivity.this);
 
-
+                public class ExampleUnitTest2{
+    @Test
+    public void addition_isCorrect() {
+        assertEquals(4, 2 + 2);
+        mRecyclerView.setHasFixedSize(true);
+        mLayoutManager = new LinearLayoutManager(ReportsActivity.this);
+              lang.setText("language: "+dataSnapshot.child("language").getValue().toString());
 
  */
