@@ -18,37 +18,17 @@ public class ExampleUnitTest {
 
 
 /*
-public class ExampleUnitTest {
-    @Test
-    public void addition_isCorrect() {
-        assertEquals(4)
-         time = itemView.findViewById(R.id.details);
-            play = itemView.findViewById(R.id.play);
-            check = itemView.findViewById(R.id.checked);
-    }
-}
 
 
 public class ExampleUnitTest {
     @Test
     public void addition_isCorrect() {
-        assertEquals(4)
-         time = itemView.findViewById(R.id.details);
-            play = itemView.findViewById(R.id.play);
-             time = itemView.findViewById(R.id.details);
-            check = itemView.findViewById(R.id.checked);
-    }
-}
-
-
-public class ExampleUnitTest {
-    @Test
-    public void addition_isCorrect() {
-        assertEquals(4)
-         time = itemView.findViewById(R.id.details);
-            play = itemView.findViewById(R.id.play);
-             time = itemView.findViewById(R.id.details);
-            check = itemView.findViewById(R.id.checked);
+        assertEquals(1);
+        RegisterUserName = (EditText) findViewById(R.id.register_name);
+        RegisterUserEmail = (EditText) findViewById(R.id.register_email);
+        RegisterUserPassword = (EditText) findViewById(R.id.register_password);
+        createAccountBtn = (Button) findViewById(R.id.creat_account_button);
+        createHebAccountBtn = (Button) findViewById(R.id.creat_heb_account_button);
     }
 }
 
