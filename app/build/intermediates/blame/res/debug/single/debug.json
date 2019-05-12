@@ -560,10 +560,6 @@
         "source": "C:\\Users\\rafi\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-15.0.1.aar\\f70c0c4f10a58ec2619f1d83f342fcf8\\res\\drawable\\common_google_signin_btn_icon_disabled.xml"
     },
     {
-        "merged": "C:\\Users\\rafi\\AndroidStudioProjects\\eyes\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_worker.xml.flat",
-        "source": "C:\\Users\\rafi\\AndroidStudioProjects\\eyes\\app\\src\\main\\res\\layout\\activity_worker.xml"
-    },
-    {
         "merged": "C:\\Users\\rafi\\AndroidStudioProjects\\eyes\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_user_info.xml.flat",
         "source": "C:\\Users\\rafi\\AndroidStudioProjects\\eyes\\app\\src\\main\\res\\layout\\activity_user_info.xml"
     },
@@ -1748,10 +1744,6 @@
         "source": "C:\\Users\\rafi\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\1d3c38444d528baeea74ceff5705b299\\res\\layout\\abc_screen_content_include.xml"
     },
     {
-        "merged": "C:\\Users\\rafi\\AndroidStudioProjects\\eyes\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_worker_report.xml.flat",
-        "source": "C:\\Users\\rafi\\AndroidStudioProjects\\eyes\\app\\src\\main\\res\\layout\\activity_worker_report.xml"
-    },
-    {
         "merged": "C:\\Users\\rafi\\AndroidStudioProjects\\eyes\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_ic_menu_copy_mtrl_am_alpha.png.flat",
         "source": "C:\\Users\\rafi\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\1d3c38444d528baeea74ceff5705b299\\res\\drawable-mdpi-v4\\abc_ic_menu_copy_mtrl_am_alpha.png"
     },
@@ -1978,10 +1970,6 @@
     {
         "merged": "C:\\Users\\rafi\\AndroidStudioProjects\\eyes\\app\\build\\intermediates\\res\\merged\\debug\\drawable_abc_tab_indicator_material.xml.flat",
         "source": "C:\\Users\\rafi\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\1d3c38444d528baeea74ceff5705b299\\res\\drawable\\abc_tab_indicator_material.xml"
-    },
-    {
-        "merged": "C:\\Users\\rafi\\AndroidStudioProjects\\eyes\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_create_worker.xml.flat",
-        "source": "C:\\Users\\rafi\\AndroidStudioProjects\\eyes\\app\\src\\main\\res\\layout\\activity_create_worker.xml"
     },
     {
         "merged": "C:\\Users\\rafi\\AndroidStudioProjects\\eyes\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_scrubber_control_to_pressed_mtrl_000.png.flat",
