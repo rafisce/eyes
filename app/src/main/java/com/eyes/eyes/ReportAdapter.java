@@ -93,3 +93,25 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ReportView
 
     }
  */
+
+/*
+            super(itemView);
+            time = itemView.findViewById(R.id.details);
+            play = itemView.findViewById(R.id.play);
+            check = itemView.findViewById(R.id.checked);
+
+
+            play.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(listener!=null){
+                        int pos = getAdapterPosition();
+                        if(pos!=RecyclerView.NO_POSITION){
+                            listener.OnPlayClick(pos);
+                        }
+                    }
+                }
+            });
+        }
+    }
+ */
