@@ -191,16 +191,8 @@ public class LastConnectedActivity extends AppCompatActivity {
 
  */
 
-
 /*
-    private void collectUsers(Map<String, Object> users) {
-
-
-        //iterate through each user, ignoring their UID
-        for (Map.Entry<String, Object> entry : users.entrySet()) {
-
-            //Get user map
-            Map singleUser = (Map) entry.getValue();
+  Map singleUser = (Map) entry.getValue();
             //Get phone field and append to list
             if (singleUser.get("user_type").equals("worker")) {
                 useList.add(new LastConected((String) singleUser.get("user_name"), (String) singleUser.get("last_connected")));
@@ -212,9 +204,5 @@ public class LastConnectedActivity extends AppCompatActivity {
 
             });
             Collections.reverse(useList);
-
-        }
-
-    }
 
  */
