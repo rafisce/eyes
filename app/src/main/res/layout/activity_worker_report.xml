@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UsersActivity">
+    tools:context=".WorkerReportActivity">
 
     <include layout="@layout/app_bar_layout"
-        android:id="@+id/users_toolbar"
+        android:id="@+id/worker_reports_toolbar"
         ></include>
 
     <android.support.v7.widget.RecyclerView
@@ -16,15 +16,7 @@
         android:layout_height="match_parent"
         android:padding="4dp"
         android:background="@android:color/darker_gray"
-        android:layout_below="@id/users_toolbar"
+        android:layout_below="@id/reports_toolbar"
         />
 
 </RelativeLayout>
-
-
-    <!--android:id="@+id/recyclerView"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent"-->
-    <!--android:padding="4dp"-->
-    <!--android:background="@android:color/darker_gray"-->
-    <!--android:layout_below="@id/users_toolbar"-->

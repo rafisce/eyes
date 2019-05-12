@@ -46,7 +46,8 @@ public class WorkerActivity extends AppCompatActivity {
         reports.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent ra = new Intent(WorkerActivity.this, WorkerReportActivity.class);
+                startActivity(ra);
             }
         });
 

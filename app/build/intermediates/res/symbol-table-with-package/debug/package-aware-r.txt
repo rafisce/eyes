@@ -1106,6 +1106,7 @@ id worker_last_connected
 id worker_logout
 id worker_name
 id worker_password
+id worker_reports_toolbar
 id worker_user_reports
 id wrap
 id wrap_content
@@ -1162,6 +1163,7 @@ layout activity_user_info
 layout activity_users
 layout activity_welcom
 layout activity_worker
+layout activity_worker_report
 layout app_bar_layout
 layout design_bottom_navigation_item
 layout design_bottom_sheet_dialog
