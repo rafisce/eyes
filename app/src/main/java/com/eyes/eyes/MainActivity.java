@@ -401,3 +401,48 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 }
+
+/*
+speaker.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if ((String) speaker.getTag() == "on") {
+                    speaker.setImageResource(R.drawable.speaker_off);
+                    speaker.setTag("off");
+                    AudioManager amanager = (AudioManager) getSystemService(MainActivity.AUDIO_SERVICE);
+                    amanager.setStreamMute(AudioManager.STREAM_NOTIFICATION, false);
+                } else if ((String) speaker.getTag() == "off") {
+                    speaker.setImageResource(R.drawable.speaker_on);
+                    speaker.setTag("on");
+                    AudioManager amanager = (AudioManager) getSystemService(MainActivity.AUDIO_SERVICE);
+                    amanager.setStreamMute(AudioManager.STREAM_NOTIFICATION, true);
+                }
+            }
+        });
+
+        user_docs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent docsPageIntent = new Intent(MainActivity.this, UserInfoActivity.class);
+                startActivity(docsPageIntent);
+
+            }
+        });
+
+        report.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    startRecording();
+
+                } else if (event.getAction() == MotionEvent.ACTION_UP) {
+                    stopRecording();
+                }
+
+                return false;
+            }
+
+
+        });
+ */
