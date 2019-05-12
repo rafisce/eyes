@@ -965,7 +965,6 @@ id lang_settings
 id lang_text_view
 id largeLabel
 id last
-id last_connected
 id last_connected_toolbar
 id left
 id light
@@ -977,7 +976,6 @@ id login_button
 id login_email
 id login_password
 id login_toolbar
-id logout
 id main_app_bar
 id main_page_toolbar
 id masked
@@ -1015,7 +1013,6 @@ id register_name
 id register_password
 id register_toolbar
 id report
-id reports
 id reports_toolbar
 id right
 id right_icon
@@ -1090,7 +1087,6 @@ id use_dest
 id user_docs
 id user_email_text_view
 id user_name_text_view
-id users
 id users_toolbar
 id view_offset_helper
 id visible
@@ -1136,7 +1132,6 @@ layout abc_search_dropdown_item_icons_2line
 layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
-layout activity_admin
 layout activity_destinations
 layout activity_input
 layout activity_last_connected
