@@ -15,3 +15,42 @@ public class ExampleUnitTest {
         assertEquals(4, 2 + 2);
     }
 }
+
+
+/*
+public class ExampleUnitTest {
+    @Test
+    public void addition_isCorrect() {
+        assertEquals(4)
+         time = itemView.findViewById(R.id.details);
+            play = itemView.findViewById(R.id.play);
+            check = itemView.findViewById(R.id.checked);
+    }
+}
+
+
+public class ExampleUnitTest {
+    @Test
+    public void addition_isCorrect() {
+        assertEquals(4)
+         time = itemView.findViewById(R.id.details);
+            play = itemView.findViewById(R.id.play);
+             time = itemView.findViewById(R.id.details);
+            check = itemView.findViewById(R.id.checked);
+    }
+}
+
+
+public class ExampleUnitTest {
+    @Test
+    public void addition_isCorrect() {
+        assertEquals(4)
+         time = itemView.findViewById(R.id.details);
+            play = itemView.findViewById(R.id.play);
+             time = itemView.findViewById(R.id.details);
+            check = itemView.findViewById(R.id.checked);
+    }
+}
+
+
+ */

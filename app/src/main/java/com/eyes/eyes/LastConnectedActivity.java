@@ -190,3 +190,19 @@ public class LastConnectedActivity extends AppCompatActivity {
 }
 
  */
+
+/*
+  Map singleUser = (Map) entry.getValue();
+            //Get phone field and append to list
+            if (singleUser.get("user_type").equals("worker")) {
+                useList.add(new LastConected((String) singleUser.get("user_name"), (String) singleUser.get("last_connected")));
+            }
+            Collections.sort(useList, new Comparator<LastConected>() {
+                public int compare(LastConected m1, LastConected m2) {
+                    return m1.getTime().compareTo(m2.getTime());
+                }
+
+            });
+            Collections.reverse(useList);
+
+ */
