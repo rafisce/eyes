@@ -29,6 +29,8 @@ public class ExampleUnitTest {
         RegisterUserPassword = (EditText) findViewById(R.id.register_password);
         createAccountBtn = (Button) findViewById(R.id.creat_account_button);
         createHebAccountBtn = (Button) findViewById(R.id.creat_heb_account_button);
+                createHebAccountBtn = (Button) findViewById(R.id.creat_heb_account_button);
+
     }
 }
 
