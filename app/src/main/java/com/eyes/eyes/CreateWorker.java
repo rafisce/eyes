@@ -1,7 +1,6 @@
 package com.eyes.eyes;
 
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -68,6 +67,7 @@ public class CreateWorker extends AppCompatActivity {
         Log.d("RegisterAccount", user.getName());
         if (TextUtils.isEmpty(user.getName())) {
             Toast.makeText(CreateWorker.this, "אנא רשום את שמך", Toast.LENGTH_LONG).show();
+            //
         }
         if (TextUtils.isEmpty(user.getEmail())) {
             Toast.makeText(CreateWorker.this, "אנא רשום את האימייל שלך", Toast.LENGTH_LONG).show();
