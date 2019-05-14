@@ -72,7 +72,7 @@ public class DestinationReportActivity extends AppCompatActivity {
         //iterate through each user, ignoring their UID
         for (Map.Entry<String, Object> entry : users.entrySet()) {
 
-            //Get user map
+            //Get user mapJKL
             singleUser = (Map) entry.getValue();
             //Get phone field and append to list
 
