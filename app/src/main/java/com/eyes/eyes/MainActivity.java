@@ -307,7 +307,7 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
-                                final String tempUri = taskSnapshot.getDownloadUrl().toString();
+                                final String tempUri = taskSnapshot.getMetadata().getReference().getDownloadUrl().toString();
 
                                 DatabaseReference tempUser = FirebaseDatabase.getInstance().getReference().child("Users").child(mAuth.getCurrentUser().getUid());
                                 tempUser.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -433,28 +433,28 @@ public class MainActivity extends AppCompatActivity {
             storeUserDefaultDataReference.child("last_connected").setValue(last_connected);
 
             current_user = FirebaseDatabase.getInstance().getReference().child("Users").child(mAuth.getCurrentUser().getUid());
-            current_user.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    if (dataSnapshot.child("user_type").getValue().toString().equals("admin")) {
-                        Intent mainIntent = new Intent(MainActivity.this, AdminActivity.class);
-                        mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        startActivity(mainIntent);
-                        finish();
-                    }
-                    else if(dataSnapshot.child("user_type").getValue().toString().equals("worker")){
-                        Intent mainIntent = new Intent(MainActivity.this, WorkerActivity.class);
-                        mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        startActivity(mainIntent);
-                        finish();
-                    }
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                }
-            });
+//            current_user.addValueEventListener(new ValueEventListener() {
+//                @Override
+//                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                    if (dataSnapshot.child("user_type").getValue().toString().equals("admin")) {
+//                        Intent mainIntent = new Intent(MainActivity.this, AdminActivity.class);
+//                        mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//                        startActivity(mainIntent);
+//                        finish();
+//                    }
+//                    else if(dataSnapshot.child("user_type").getValue().toString().equals("worker")){
+//                        Intent mainIntent = new Intent(MainActivity.this, WorkerActivity.class);
+//                        mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//                        startActivity(mainIntent);
+//                        finish();
+//                    }
+//                }
+//
+//                @Override
+//                public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//                }
+//            });
         }
     }
 

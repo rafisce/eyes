@@ -914,10 +914,13 @@ id contentPanel
 id coordinator
 id creat_account_button
 id creat_heb_account_button
+id create_worker
+id create_worker_toolbar
 id created_date_text_view
 id custom
 id customPanel
 id dark
+id date
 id decor_content_parent
 id default_activity_button
 id design_bottom_sheet
@@ -926,8 +929,8 @@ id design_menu_item_action_area_stub
 id design_menu_item_text
 id design_navigation_view
 id dest
+id destination_Report_toolbar
 id destinations_toolbar
-id details
 id dimensions
 id direct
 id disableHome
@@ -965,6 +968,7 @@ id lang_settings
 id lang_text_view
 id largeLabel
 id last
+id last_connected
 id last_connected_toolbar
 id left
 id light
@@ -976,6 +980,7 @@ id login_button
 id login_email
 id login_password
 id login_toolbar
+id logout
 id main_app_bar
 id main_page_toolbar
 id masked
@@ -985,6 +990,7 @@ id mic
 id middle
 id mini
 id multiply
+id my_details
 id name
 id navigation_header_container
 id need_account_button
@@ -994,6 +1000,7 @@ id normal
 id notification_background
 id notification_main_column
 id notification_main_column_container
+id number
 id packed
 id parallax
 id parent
@@ -1013,6 +1020,7 @@ id register_name
 id register_password
 id register_toolbar
 id report
+id reports
 id reports_toolbar
 id right
 id right_icon
@@ -1087,11 +1095,21 @@ id use_dest
 id user_docs
 id user_email_text_view
 id user_name_text_view
+id user_worker
+id users
 id users_toolbar
 id view_offset_helper
 id visible
 id wide
 id withText
+id work_doc_toolbar
+id worker_dest
+id worker_email
+id worker_logout
+id worker_name
+id worker_password
+id worker_reports_toolbar
+id worker_user_reports
 id wrap
 id wrap_content
 integer abc_config_activityDefaultDur
@@ -1132,6 +1150,9 @@ layout abc_search_dropdown_item_icons_2line
 layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
+layout activity_admin
+layout activity_create_worker
+layout activity_destination_report
 layout activity_destinations
 layout activity_input
 layout activity_last_connected
@@ -1144,6 +1165,9 @@ layout activity_start_page
 layout activity_user_info
 layout activity_users
 layout activity_welcom
+layout activity_worker
+layout activity_worker_info
+layout activity_worker_report
 layout app_bar_layout
 layout design_bottom_navigation_item
 layout design_bottom_sheet_dialog

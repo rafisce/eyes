@@ -37,7 +37,7 @@ public class WorkerReportActivity extends AppCompatActivity {
 
         mToolbar = (Toolbar) findViewById(R.id.worker_reports_toolbar);
         setSupportActionBar(mToolbar);
-        getSupportActionBar().setTitle("מנהל");
+        getSupportActionBar().setTitle("חזרה");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 

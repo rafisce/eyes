@@ -13,8 +13,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".WorkerReportActivity"
-            android:parentActivityName=".WorkerActivity"></activity>
+        <activity
+            android:name=".DestinationReportActivity"
+            android:parentActivityName=".WorkerActivity" />
+        <activity
+            android:name=".WorkerInfoActivity"
+            android:parentActivityName=".WorkerActivity" />
+        <activity
+            android:name=".WorkerReportActivity"
+            android:parentActivityName=".WorkerActivity" />
         <activity android:name=".WorkerActivity" />
         <activity
             android:name=".CreateWorker"

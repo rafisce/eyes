@@ -25,18 +25,18 @@
         android:text="פרטים אישיים" />
 
     <Button
-        android:id="@+id/worker_last_connected"
+        android:id="@+id/worker_dest"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/my_details"
         android:layout_centerInParent="true"
         android:layout_margin="5dp"
-        android:text="דוח עובדים" />
+        android:text="דוח יעדים" />
     <Button
         android:id="@+id/worker_user_reports"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/worker_last_connected"
+        android:layout_below="@id/worker_dest"
         android:layout_centerInParent="true"
         android:layout_margin="5dp"
         android:text="דוח תקלות" />
