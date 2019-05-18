@@ -4,24 +4,7 @@
             "outputFile": "C:\\Users\\rafi\\AndroidStudioProjects\\eyes\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-b+sr+Latn\\values-b+sr+Latn.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\rafi\\.gradle\\caches\\transforms-1\\files-1.1\\firebase-messaging-17.3.0.aar\\97a505200c2a0c0d549db046b7559755\\res\\values-b+sr+Latn\\values.xml",
-                    "from": {
-                        "startLines": "4",
-                        "startColumns": "0",
-                        "startOffsets": "212",
-                        "endColumns": "99",
-                        "endOffsets": "311"
-                    },
-                    "to": {
-                        "startLines": "37",
-                        "startColumns": "4",
-                        "startOffsets": "4537",
-                        "endColumns": "103",
-                        "endOffsets": "4636"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\rafi\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-15.0.1.aar\\f70c0c4f10a58ec2619f1d83f342fcf8\\res\\values-b+sr+Latn\\values.xml",
+                    "source": "C:\\Users\\rafi\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-16.0.1.aar\\637f7215f585929f3b76719a1fbd602a\\res\\values-b+sr+Latn\\values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
                         "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
@@ -35,6 +18,23 @@
                         "startOffsets": "1878,1986,2174,2302,2414,2627,2756,2898,3218,3426,3535,3726,3855,4063,4235,4333,4428",
                         "endColumns": "107,187,127,111,212,128,141,130,207,108,190,128,207,171,97,94,108",
                         "endOffsets": "1981,2169,2297,2409,2622,2751,2893,3024,3421,3530,3721,3850,4058,4230,4328,4423,4532"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\rafi\\.gradle\\caches\\transforms-1\\files-1.1\\firebase-messaging-18.0.0.aar\\0ddf87a9630aa9f2cb8998276e098ae3\\res\\values-b+sr+Latn\\values.xml",
+                    "from": {
+                        "startLines": "4",
+                        "startColumns": "0",
+                        "startOffsets": "212",
+                        "endColumns": "99",
+                        "endOffsets": "311"
+                    },
+                    "to": {
+                        "startLines": "37",
+                        "startColumns": "4",
+                        "startOffsets": "4537",
+                        "endColumns": "103",
+                        "endOffsets": "4636"
                     }
                 },
                 {
@@ -72,7 +72,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\rafi\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-basement-15.0.1.aar\\293a88ed8b633e3b378982825f4bc855\\res\\values-b+sr+Latn\\values.xml",
+                    "source": "C:\\Users\\rafi\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-basement-16.2.0.aar\\79f0dd652020670bed5532aa901a256d\\res\\values-b+sr+Latn\\values.xml",
                     "from": {
                         "startLines": "4",
                         "startColumns": "0",

@@ -929,6 +929,7 @@ id design_menu_item_action_area_stub
 id design_menu_item_text
 id design_navigation_view
 id dest
+id destination_Report_toolbar
 id destinations_toolbar
 id dimensions
 id direct
@@ -1101,11 +1102,13 @@ id view_offset_helper
 id visible
 id wide
 id withText
+id work_doc_toolbar
+id worker_dest
 id worker_email
-id worker_last_connected
 id worker_logout
 id worker_name
 id worker_password
+id worker_reports_toolbar
 id worker_user_reports
 id wrap
 id wrap_content
@@ -1149,6 +1152,7 @@ layout abc_select_dialog_material
 layout abc_tooltip
 layout activity_admin
 layout activity_create_worker
+layout activity_destination_report
 layout activity_destinations
 layout activity_input
 layout activity_last_connected
@@ -1162,6 +1166,8 @@ layout activity_user_info
 layout activity_users
 layout activity_welcom
 layout activity_worker
+layout activity_worker_info
+layout activity_worker_report
 layout app_bar_layout
 layout design_bottom_navigation_item
 layout design_bottom_sheet_dialog

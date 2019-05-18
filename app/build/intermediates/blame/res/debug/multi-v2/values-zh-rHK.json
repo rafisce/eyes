@@ -4,24 +4,7 @@
             "outputFile": "C:\\Users\\rafi\\AndroidStudioProjects\\eyes\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-zh-rHK\\values-zh-rHK.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\rafi\\.gradle\\caches\\transforms-1\\files-1.1\\firebase-messaging-17.3.0.aar\\97a505200c2a0c0d549db046b7559755\\res\\values-zh-rHK\\values.xml",
-                    "from": {
-                        "startLines": "4",
-                        "startColumns": "0",
-                        "startOffsets": "209",
-                        "endColumns": "96",
-                        "endOffsets": "305"
-                    },
-                    "to": {
-                        "startLines": "37",
-                        "startColumns": "4",
-                        "startOffsets": "4047",
-                        "endColumns": "100",
-                        "endOffsets": "4143"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\rafi\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-15.0.1.aar\\f70c0c4f10a58ec2619f1d83f342fcf8\\res\\values-zh-rHK\\values.xml",
+                    "source": "C:\\Users\\rafi\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-16.0.1.aar\\637f7215f585929f3b76719a1fbd602a\\res\\values-zh-rHK\\values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
                         "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
@@ -38,7 +21,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\rafi\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-basement-15.0.1.aar\\293a88ed8b633e3b378982825f4bc855\\res\\values-zh-rHK\\values.xml",
+                    "source": "C:\\Users\\rafi\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-basement-16.2.0.aar\\79f0dd652020670bed5532aa901a256d\\res\\values-zh-rHK\\values.xml",
                     "from": {
                         "startLines": "4",
                         "startColumns": "0",
@@ -69,6 +52,23 @@
                         "startOffsets": "105,200,293,393,475,572,680,756,832,910,1006,1102,1197,1294,1389,1487,1638,4148",
                         "endColumns": "94,92,99,81,96,107,75,75,77,95,95,94,96,94,97,150,93,77",
                         "endOffsets": "195,288,388,470,567,675,751,827,905,1001,1097,1192,1289,1384,1482,1633,1727,4221"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\rafi\\.gradle\\caches\\transforms-1\\files-1.1\\firebase-messaging-18.0.0.aar\\0ddf87a9630aa9f2cb8998276e098ae3\\res\\values-zh-rHK\\values.xml",
+                    "from": {
+                        "startLines": "4",
+                        "startColumns": "0",
+                        "startOffsets": "209",
+                        "endColumns": "96",
+                        "endOffsets": "305"
+                    },
+                    "to": {
+                        "startLines": "37",
+                        "startColumns": "4",
+                        "startOffsets": "4047",
+                        "endColumns": "100",
+                        "endOffsets": "4143"
                     }
                 },
                 {
