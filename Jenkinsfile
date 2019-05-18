@@ -6,14 +6,13 @@ pipeline {
                 sh 'mvn --version'
             }
         }
+         stage('Git') {
+                        steps {
+                            git 'https://github.com/rafisce/eyes.git'
+                        }
+                    }
     }
 
-    stages {
-            stage('Git') {
-                steps {
-                    git 'https://github.com/rafisce/eyes.git'
-                }
-            }
-        }
+
 
 }
