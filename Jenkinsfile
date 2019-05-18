@@ -6,11 +6,21 @@ pipeline {
                 sh 'mvn --version'
             }
         }
-         stage('Git') {
-                        steps {
-                            git 'https://github.com/rafisce/eyes.git'
-                        }
-                    }
+
+        stage('Git') {
+             steps {
+                git 'https://github.com/rafisce/eyes.git'
+             }
+        }
+
+        stage('Run Tests') {
+             steps {
+                 sh 'make check || true'
+                 junit '**/target/*.xml'
+             }
+        }
+
+
     }
 
 
