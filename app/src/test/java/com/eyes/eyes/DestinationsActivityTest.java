@@ -1,5 +1,7 @@
 package com.eyes.eyes;
 
+import android.util.Log;
+
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -24,6 +26,7 @@ public class DestinationsActivityTest {
 
         assertEquals(output.get(0).getDest(),expected.get(0).getDest());
         assertEquals(output.get(0).getNum(),expected.get(0).getNum());
+
 
 
 

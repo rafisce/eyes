@@ -15,8 +15,8 @@ pipeline {
 
         stage('Run Tests') {
              steps {
-                  
-                         sh './gradlew --no-daemon --debug :app:connectedDevDebugAndroidTest'
+
+                         sh './gradlew test'
              }
         }
 
