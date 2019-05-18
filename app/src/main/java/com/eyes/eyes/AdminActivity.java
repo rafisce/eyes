@@ -18,6 +18,7 @@ public class AdminActivity extends AppCompatActivity {
     private Button reports;
     private Button logout;
     private Button users;
+    private Button dests;
     private Button create_worker;
     private FirebaseAuth mAuth;
 
@@ -31,6 +32,7 @@ public class AdminActivity extends AppCompatActivity {
         lastConnected = (Button) findViewById(R.id.last_connected);
         reports = (Button) findViewById(R.id.reports);
         logout = (Button) findViewById(R.id.logout);
+        dests = (Button) findViewById(R.id.dests_report_admin);
         users = (Button) findViewById(R.id.users);
         create_worker = (Button) findViewById(R.id.create_worker);
 
@@ -73,6 +75,14 @@ public class AdminActivity extends AppCompatActivity {
                 startPageIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(startPageIntent);
                 finish();
+            }
+        });
+
+        dests.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent dr = new Intent(AdminActivity.this, DestinationReportActivity.class);
+                startActivity(dr);
             }
         });
     }

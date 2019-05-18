@@ -32,13 +32,21 @@
         android:layout_centerInParent="true"
         android:layout_margin="5dp"
         android:text="דוח עובדים" />
+    <Button
+        android:id="@+id/dests_report_admin"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/last_connected"
+        android:layout_centerInParent="true"
+        android:layout_margin="5dp"
+        android:text="דוח יעדים" />
 
     <Button
         android:id="@+id/create_worker"
         android:layout_width="300dp"
         android:layout_centerInParent="true"
         android:layout_height="wrap_content"
-        android:layout_below="@id/last_connected"
+        android:layout_below="@id/dests_report_admin"
         android:layout_margin="5dp"
         android:text="צור משתמש תפעולי" />
 

@@ -88,20 +88,3 @@ public class DestinationsActivity extends AppCompatActivity {
     }
 }
 
-/*
-int count = destinations.size();
-        //iterate through each user, ignoring their UID
-        for (String entry : destinations) {
-
-            //Get user map
-            String dest = entry;
-            //Get phone field and append to list
-            destList.add(new Destination(dest, String.valueOf(count - 1)));
-            count--;
-            Collections.sort(destList, new Comparator<Destination>() {
-                public int compare(Destination m1, Destination m2) {
-                    return m1.getNum().compareTo(m2.getNum());
-                }
-            });
-
- */

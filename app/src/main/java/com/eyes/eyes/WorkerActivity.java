@@ -48,6 +48,7 @@ public class WorkerActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent mainIntent = new Intent(WorkerActivity.this, MainActivity.class);
                 mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                mainIntent.putExtra("from","worker");
                 startActivity(mainIntent);
                 finish();
             }
@@ -72,8 +73,8 @@ public class WorkerActivity extends AppCompatActivity {
         dests.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent docsPageIntent = new Intent(WorkerActivity.this, DestinationReportActivity.class);
-                startActivity(docsPageIntent);
+                Intent dr = new Intent(WorkerActivity.this, DestinationReportActivity.class);
+                startActivity(dr);
             }
         });
 

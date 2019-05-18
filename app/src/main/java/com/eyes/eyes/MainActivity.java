@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     private static final int REQUEST_CODE = 1;
     private static final int REQUEST_CODE2 = 2;
+    private String worker="no";
 
     private DatabaseReference current_user, current_user2;
     private FirebaseAuth mAuth;
@@ -79,6 +80,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if(getIntent().hasExtra("from")){
+            worker="yes";
+        }
 
 
         mAuth = FirebaseAuth.getInstance();
@@ -433,28 +438,28 @@ public class MainActivity extends AppCompatActivity {
             storeUserDefaultDataReference.child("last_connected").setValue(last_connected);
 
             current_user = FirebaseDatabase.getInstance().getReference().child("Users").child(mAuth.getCurrentUser().getUid());
-//            current_user.addValueEventListener(new ValueEventListener() {
-//                @Override
-//                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                    if (dataSnapshot.child("user_type").getValue().toString().equals("admin")) {
-//                        Intent mainIntent = new Intent(MainActivity.this, AdminActivity.class);
-//                        mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//                        startActivity(mainIntent);
-//                        finish();
-//                    }
-//                    else if(dataSnapshot.child("user_type").getValue().toString().equals("worker")){
-//                        Intent mainIntent = new Intent(MainActivity.this, WorkerActivity.class);
-//                        mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//                        startActivity(mainIntent);
-//                        finish();
-//                    }
-//                }
-//
-//                @Override
-//                public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//                }
-//            });
+            current_user.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.child("user_type").getValue().toString().equals("admin")) {
+                        Intent mainIntent = new Intent(MainActivity.this, AdminActivity.class);
+                        mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(mainIntent);
+                        finish();
+                    }
+                    else if(dataSnapshot.child("user_type").getValue().toString().equals("worker")&& worker.equals("no")){
+                        Intent mainIntent = new Intent(MainActivity.this, WorkerActivity.class);
+                        mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(mainIntent);
+                        finish();
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
         }
     }
 
@@ -463,47 +468,3 @@ public class MainActivity extends AppCompatActivity {
     }
 }
 
-/*
-speaker.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if ((String) speaker.getTag() == "on") {
-                    speaker.setImageResource(R.drawable.speaker_off);
-                    speaker.setTag("off");
-                    AudioManager amanager = (AudioManager) getSystemService(MainActivity.AUDIO_SERVICE);
-                    amanager.setStreamMute(AudioManager.STREAM_NOTIFICATION, false);
-                } else if ((String) speaker.getTag() == "off") {
-                    speaker.setImageResource(R.drawable.speaker_on);
-                    speaker.setTag("on");
-                    AudioManager amanager = (AudioManager) getSystemService(MainActivity.AUDIO_SERVICE);
-                    amanager.setStreamMute(AudioManager.STREAM_NOTIFICATION, true);
-                }
-            }
-        });
-
-        user_docs.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent docsPageIntent = new Intent(MainActivity.this, UserInfoActivity.class);
-                startActivity(docsPageIntent);
-
-            }
-        });
-
-        report.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-
-                if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    startRecording();
-
-                } else if (event.getAction() == MotionEvent.ACTION_UP) {
-                    stopRecording();
-                }
-
-                return false;
-            }
-
-
-        });
- */
