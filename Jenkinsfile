@@ -9,7 +9,7 @@ pipeline {
     stage('Git') {
       // Get some code from a GitHub repository
       steps{
-          git 'https://github.com/markrity/android-unit-test-example.git'
+          git 'https://github.com/rafisce/eyes.git'
       }
    }
 
