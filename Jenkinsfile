@@ -7,7 +7,7 @@ pipeline {
     }
     stages {
     stage('Git') {
-      // Get some code from a GitHub repository
+      // Get some code  from a GitHub repository
       steps{
           git 'https://github.com/rafisce/eyes.git'
       }
