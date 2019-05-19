@@ -12,11 +12,11 @@ pipeline {
       steps{
           git 'https://github.com/rafisce/eyes.git'
       }
-        stage('SonarQube analysis') {
-    // requires SonarQube Scanner 2.8+
-    def scannerHome = tool 'SonarQube Scanner 2.8';
+      stage('SonarQube analysis') {
     withSonarQubeEnv('My SonarQube Server') {
-      sh "${scannerHome}/bin/sonar-scanner"
+      // requires SonarQube Scanner for Gradle 2.1+
+      // It's important to add --info because of SONARJNKNS-281
+      sh './gradlew --info sonarqube'
     }
   }
    }
