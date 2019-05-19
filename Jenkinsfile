@@ -12,15 +12,13 @@ pipeline {
           git 'https://github.com/rafisce/eyes.git'
       }
    }
-        
-        stage('SonarQube analysis') {
-            steps{
+     stage('SonarQube analysis') {
+         steps{
     withSonarQubeEnv('My SonarQube Server') {
-      // requires SonarQube Scanner for Gradle 2.1+
-      // It's important to add --info because of SONARJNKNS-281
-      sh './gradlew --info sonarqube'
+      // requires SonarQube Scanner for Maven 3.2+
+      sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.2:sonar'
     }
-            }
+         }
   }
 
     stage('Run Tests'){
