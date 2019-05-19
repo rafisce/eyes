@@ -7,12 +7,10 @@ pipeline {
         }
     }
     stages {
-    stage('Git') {
-      // Get some code  from a GitHub repository
-      steps{
-          git 'https://github.com/rafisce/eyes.git'
-      }
-      stage('SonarQube analysis') {
+    stage('SCM') {
+    git 'https://github.com/rafisce/eyes.git'
+  }
+  stage('SonarQube analysis') {
     withSonarQubeEnv('My SonarQube Server') {
       // requires SonarQube Scanner for Gradle 2.1+
       // It's important to add --info because of SONARJNKNS-281
