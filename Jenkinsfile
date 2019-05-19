@@ -6,7 +6,7 @@ pipeline {
 
         }
     }
-    stages {
+   
     stage('SCM') {
     git 'https://github.com/rafisce/eyes.git'
   }
@@ -17,7 +17,7 @@ pipeline {
       sh './gradlew --info sonarqube'
     }
   }
-   }
+  
  
     stage('Run Tests'){
           steps{
