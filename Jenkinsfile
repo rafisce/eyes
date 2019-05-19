@@ -12,19 +12,15 @@ pipeline {
       steps{
           git 'https://github.com/rafisce/eyes.git'
       }
+        stage('SonarQube analysis') {
+    // requires SonarQube Scanner 2.8+
+    def scannerHome = tool 'SonarQube Scanner 2.8';
+    withSonarQubeEnv('My SonarQube Server') {
+      sh "${scannerHome}/bin/sonar-scanner"
+    }
+  }
    }
-   stage('Sonarqube analysis') {
-    steps {
-    script {
-             scannerHome = tool 'SonarScanner';
-        }
-     withSonarQubeEnv('SonarQube') {
-         bat "${scannerHome}/bin/sonar-scanner.bat" 
-    }
-
-    }
-        }
-
+ 
     stage('Run Tests'){
           steps{
                sh """
