@@ -1,28 +1,32 @@
 pipeline {
-    agent { docker { image 'maven:3.3.3' } }
+    agent { docker {
+        image 'anthonymonori/android-ci-image'
+        //arugment to execute everything as a sudoer
+        args '-u root:sudo'
+        }
+    }
     stages {
-        stage('build') {
-            steps {
-                sh 'mvn --version'
-            }
-        }
+    stage('Git') {
+      // Get some code from a GitHub repository
+      steps{
+          git 'https://github.com/markrity/android-unit-test-example.git'
+      }
+   }
 
-        stage('Git') {
-             steps {
-                git 'https://github.com/rafisce/eyes.git'
-             }
-        }
-
-        stage('Run Tests') {
-             steps {
-
-                         sh './gradlew test'
-             }
-        }
-
-
+    stage('Run Tests'){
+          steps{
+               sh """
+               yes | sdkmanager --licenses
+                ./gradlew test
+                """
+          }
     }
 
+    stage('Publish Test Results'){
+        steps{
+            publishHTML([allowMissing: false, alwaysLinkToLastBuild: true, keepAll: true, reportDir: 'app/build/reports/tests/testReleaseUnitTest', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: ''])
+        }
+    }
 
-
+}
 }
