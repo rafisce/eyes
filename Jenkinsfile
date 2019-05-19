@@ -5,13 +5,7 @@ pipeline {
         args '-u root:sudo'
         }
     }
-    stages {
-    stage('Git') {
-      //Get some code from a GitHub repository
-      steps{
-          git 'https://github.com/rafisce/eyes.git'
-      }
-   }
+
 
     stage('Run Tests'){
           steps{
