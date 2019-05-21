@@ -13,6 +13,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.FirebaseOptions;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -20,17 +22,19 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.DateFormat;
 import java.util.Calendar;
+import java.util.Map;
 
 public class CreateWorker extends AppCompatActivity {
 
     private Toolbar mToolbar;
     private ProgressDialog loadingBar;
-    private FirebaseAuth mAuth;
     private DatabaseReference storeUserDefaultDataReference;
     private EditText WorkerUserName;
     private EditText WorkerUserEmail;
     private EditText WorkerUserPassword;
     private Button createAccountBtn;
+    private FirebaseAuth mAuth1;
+    private FirebaseAuth mAuth2;
 
 
 
@@ -39,7 +43,7 @@ public class CreateWorker extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_worker);
 
-        mAuth = FirebaseAuth.getInstance();
+
         mToolbar = (Toolbar) findViewById(R.id.create_worker_toolbar);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setTitle("ניהול");
@@ -49,6 +53,20 @@ public class CreateWorker extends AppCompatActivity {
         WorkerUserPassword = (EditText) findViewById(R.id.worker_password);
         createAccountBtn = (Button) findViewById(R.id.create_worker);
         loadingBar = new ProgressDialog(this);
+        mAuth1 = FirebaseAuth.getInstance();
+
+        FirebaseOptions firebaseOptions = new FirebaseOptions.Builder()
+                .setDatabaseUrl("[https://eyes-45129.firebaseio.com]")
+                .setApiKey("AIzaSyBQ0Q_n562d4XdWo1vgH0TF270I9EwSjoE")
+                .setApplicationId("eyes-45129").build();
+
+        try { FirebaseApp myApp = FirebaseApp.initializeApp(getApplicationContext(), firebaseOptions, "AnyAppName");
+            mAuth2 = FirebaseAuth.getInstance(myApp);
+        } catch (IllegalStateException e){
+            mAuth2 = FirebaseAuth.getInstance(FirebaseApp.getInstance("AnyAppName"));
+        }
+
+
 
         createAccountBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,12 +97,13 @@ public class CreateWorker extends AppCompatActivity {
             loadingBar.setMessage("אנא המתן בזמן שאנחנו יוצרים חשבון עבורך");
             loadingBar.show();
 
-            mAuth.createUserWithEmailAndPassword(user.getEmail(), user.getPassword())
+
+            mAuth2.createUserWithEmailAndPassword(user.getEmail(), user.getPassword())
                     .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
-                                String currentUserId = mAuth.getCurrentUser().getUid();
+                                String currentUserId = mAuth2.getCurrentUser().getUid();
                                 storeUserDefaultDataReference = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId);
                                 storeUserDefaultDataReference.child("user_name").setValue(user.getName());
                                 storeUserDefaultDataReference.child("language").setValue(user.getLanguage());
@@ -92,6 +111,8 @@ public class CreateWorker extends AppCompatActivity {
                                 storeUserDefaultDataReference.child("user_type").setValue(user.getTYPE());
                                 storeUserDefaultDataReference.child("records").setValue(0);
                                 storeUserDefaultDataReference.child("dest_counter").setValue(0);
+                                storeUserDefaultDataReference.child("active").setValue("true");
+                                storeUserDefaultDataReference.child("last_connected").setValue("עדיין לא התחבר");
 
                                 Calendar calendar = Calendar.getInstance();
                                 String created_date = DateFormat.getDateInstance().format(calendar.getTime());
@@ -102,7 +123,9 @@ public class CreateWorker extends AppCompatActivity {
                                                 if (task.isSuccessful())
 
                                                 {
+                                                    mAuth2.signOut();
                                                     Toast.makeText(CreateWorker.this, "משתמש נוצר בהצלחה", Toast.LENGTH_LONG);
+
                                                 }
 
                                             }

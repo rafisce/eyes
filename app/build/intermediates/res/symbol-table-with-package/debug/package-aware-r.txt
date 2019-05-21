@@ -519,6 +519,7 @@ color dim_foreground_material_light
 color error_color_material
 color foreground_material_dark
 color foreground_material_light
+color green_user
 color grey
 color highlighted_text_material_dark
 color highlighted_text_material_light
@@ -545,6 +546,7 @@ color primary_text_default_material_dark
 color primary_text_default_material_light
 color primary_text_disabled_material_dark
 color primary_text_disabled_material_light
+color red_user
 color ripple_material_dark
 color ripple_material_light
 color secondary_text_default_material_dark
@@ -856,6 +858,8 @@ drawable speaker_on
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
 drawable unckecked
+drawable user_green
+drawable user_red
 drawable welcome
 id ALT
 id CTRL
@@ -921,6 +925,8 @@ id custom
 id customPanel
 id dark
 id date
+id deactviate_user
+id deactviate_worker
 id decor_content_parent
 id default_activity_button
 id design_bottom_sheet
@@ -970,6 +976,7 @@ id lang_text_view
 id largeLabel
 id last
 id last_connected
+id last_connected_layout
 id last_connected_toolbar
 id left
 id light
@@ -1098,6 +1105,7 @@ id user_email_text_view
 id user_name_text_view
 id user_worker
 id users
+id users_layout
 id users_toolbar
 id view_offset_helper
 id visible

@@ -81,11 +81,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if(getIntent().hasExtra("from")){
-            worker="yes";
-        }
-
-
         mAuth = FirebaseAuth.getInstance();
 
         mStorage = FirebaseStorage.getInstance().getReference();
@@ -424,7 +419,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
+        if(getIntent().hasExtra("from")){
+            worker="yes";
+        }
         FirebaseUser currentUser = mAuth.getCurrentUser();
 
         if (currentUser == null || mAuth.getCurrentUser().getUid() == null) {
@@ -447,7 +444,7 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(mainIntent);
                         finish();
                     }
-                    else if(dataSnapshot.child("user_type").getValue().toString().equals("worker")&& worker.equals("no")){
+                    else if(dataSnapshot.child("user_type").getValue().toString().equals("worker")&& !getIntent().hasExtra("from")){
                         Intent mainIntent = new Intent(MainActivity.this, WorkerActivity.class);
                         mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(mainIntent);

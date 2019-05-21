@@ -108,6 +108,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 storeUserDefaultDataReference.child("user_type").setValue(user.getTYPE());
                                 storeUserDefaultDataReference.child("records").setValue(0);
                                 storeUserDefaultDataReference.child("dest_counter").setValue(0);
+                                storeUserDefaultDataReference.child("active").setValue("true");
 
                                 Calendar calendar = Calendar.getInstance();
                                 String created_date = DateFormat.getDateInstance().format(calendar.getTime());
