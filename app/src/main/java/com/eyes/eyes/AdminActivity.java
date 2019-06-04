@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -28,14 +29,12 @@ public class AdminActivity extends AppCompatActivity {
         setContentView(R.layout.activity_admin);
 
         mAuth = FirebaseAuth.getInstance();
-
         lastConnected = (Button) findViewById(R.id.last_connected);
         reports = (Button) findViewById(R.id.reports);
         logout = (Button) findViewById(R.id.logout);
         dests = (Button) findViewById(R.id.dests_report_admin);
         users = (Button) findViewById(R.id.users);
         create_worker = (Button) findViewById(R.id.create_worker);
-
         lastConnected.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

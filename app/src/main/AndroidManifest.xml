@@ -13,12 +13,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".NavigationActivity"></activity>
+        <activity android:name=".MainActivityWorker" />
         <activity
             android:name=".DestinationReportActivity"
             android:parentActivityName=".WorkerActivity" />
-        <activity
-            android:name=".WorkerInfoActivity"
-            android:parentActivityName=".WorkerActivity" />
+        <activity android:name=".WorkerInfoActivity" />
         <activity
             android:name=".WorkerReportActivity"
             android:parentActivityName=".WorkerActivity" />
@@ -57,7 +57,6 @@
         <activity
             android:name=".RegisterActivity"
             android:parentActivityName=".StartPageActivity" />
-        <activity android:name=".MainActivityHeb" />
     </application>
 
 </manifest>

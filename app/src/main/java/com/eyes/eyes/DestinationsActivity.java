@@ -16,7 +16,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Map;
+
 
 public class DestinationsActivity extends AppCompatActivity {
 
@@ -47,7 +47,13 @@ public class DestinationsActivity extends AppCompatActivity {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         //Get map of users in datasnapshot
-                        destinationList = collectDestinations((ArrayList<String>) dataSnapshot.getValue());
+
+                        try {
+                            destinationList = collectDestinations((ArrayList<String>) dataSnapshot.getValue());
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+
 
                         mRecyclerView = findViewById(R.id.recyclerView1);
                         mRecyclerView.setHasFixedSize(true);

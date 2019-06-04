@@ -1,15 +1,12 @@
 package com.eyes.eyes;
 
 import android.Manifest;
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.app.Service;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.media.AudioManager;
-import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.net.Uri;
 import android.os.Environment;
@@ -19,24 +16,21 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ServerValue;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -47,21 +41,17 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
-import java.util.Map;
 
-import static android.os.Looper.prepare;
+public class MainActivityWorker extends AppCompatActivity {
 
-public class MainActivity extends AppCompatActivity {
     private static final int REQUEST_CODE_SPEECH = 1000;
     private Toolbar mToolbar;
 
-    private static final String TAG = "MainActivity";
+    private static final String TAG = "MainActivityWorker";
     private static final int REQUEST_CODE = 1;
     private static final int REQUEST_CODE2 = 2;
-    private static final String KEY_ = "EYE#KEY1";
 
 
     private DatabaseReference current_user, current_user2;
@@ -77,18 +67,17 @@ public class MainActivity extends AppCompatActivity {
     private MediaRecorder mRecorder;
     private String myFile = null;
     private boolean recorded = false;
-    private DesEncryption des = new DesEncryption();
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        setContentView(R.layout.activity_main);
-
+        setContentView(R.layout.activity_main_worker);
 
         mAuth = FirebaseAuth.getInstance();
+
         mStorage = FirebaseStorage.getInstance().getReference();
+
         mToolbar = (Toolbar) findViewById(R.id.main_page_toolbar);
         power_off = (ImageButton) findViewById(R.id.power_off);
         user_docs = (ImageButton) findViewById(R.id.user_docs);
@@ -102,9 +91,8 @@ public class MainActivity extends AppCompatActivity {
         report = (ImageButton) findViewById(R.id.report);
         navigate_mic = (ImageButton) findViewById(R.id.mic);
         setSupportActionBar(mToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("");
-
-        //manageConnections();
 
         power_off.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -134,8 +122,9 @@ public class MainActivity extends AppCompatActivity {
         user_docs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent docsPageIntent = new Intent(MainActivity.this, UserInfoActivity.class);
+                Intent docsPageIntent = new Intent(MainActivityWorker.this, UserInfoActivity.class);
                 startActivity(docsPageIntent);
+
             }
         });
 
@@ -200,7 +189,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void startRecording() {
-        if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED) {
+        if (ContextCompat.checkSelfPermission(MainActivityWorker.this, Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED) {
 
             mRecorder = new MediaRecorder();
             mRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
@@ -213,7 +202,7 @@ public class MainActivity extends AppCompatActivity {
             } catch (IOException e) {
                 Log.e("recording failed", "prepare() failed");
             }
-            if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+            if (ContextCompat.checkSelfPermission(MainActivityWorker.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
                 mRecorder.start();
                 recorded = true;
             } else {
@@ -236,8 +225,8 @@ public class MainActivity extends AppCompatActivity {
                     .setPositiveButton("אשר", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.RECORD_AUDIO}, REQUEST_CODE);
-                            ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_CODE2);
+                            ActivityCompat.requestPermissions(MainActivityWorker.this, new String[]{Manifest.permission.RECORD_AUDIO}, REQUEST_CODE);
+                            ActivityCompat.requestPermissions(MainActivityWorker.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_CODE2);
                         }
                     })
                     .setNegativeButton("בטל", new DialogInterface.OnClickListener() {
@@ -259,7 +248,7 @@ public class MainActivity extends AppCompatActivity {
                     .setPositiveButton("אשר", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_CODE2);
+                            ActivityCompat.requestPermissions(MainActivityWorker.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_CODE2);
                         }
                     })
                     .setNegativeButton("בטל", new DialogInterface.OnClickListener() {
@@ -282,7 +271,7 @@ public class MainActivity extends AppCompatActivity {
             mRecorder = null;
 
             uploadAudio();
-            Toast.makeText(MainActivity.this, "סיום הקלטה", Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivityWorker.this, "סיום הקלטה", Toast.LENGTH_SHORT).show();
             recorded = false;
         }
 
@@ -351,20 +340,16 @@ public class MainActivity extends AppCompatActivity {
 
     private void speak() {
 
-//        Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-//        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-//        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
-//        intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "תאמר את היעד בבקשה");
-//
-//        try {
-//            startActivityForResult(intent, REQUEST_CODE_SPEECH);
-//        } catch (Exception e) {
-//
-//        }
+        Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
+        intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "תאמר את היעד בבקשה");
 
-        Intent intent = new Intent(MainActivity.this, NavigationActivity.class);
-        intent.putExtra("destination","green");
-        startActivity(intent);
+        try {
+            startActivityForResult(intent, REQUEST_CODE_SPEECH);
+        } catch (Exception e) {
+
+        }
 
 
     }
@@ -419,7 +404,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void Logout() {
-        Intent startPageIntent = new Intent(MainActivity.this, StartPageActivity.class);
+        Intent startPageIntent = new Intent(MainActivityWorker.this, StartPageActivity.class);
         startPageIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(startPageIntent);
         finish();
@@ -428,52 +413,25 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        final FirebaseUser currentUser = mAuth.getCurrentUser();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+
         if (currentUser == null || mAuth.getCurrentUser().getUid() == null) {
             Logout();
-        } else {
-
-            String currentUserId = mAuth.getCurrentUser().getUid();
-            DatabaseReference storeUserDefaultDataReference = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId);
-            DateFormat dateFormat = new SimpleDateFormat("dd/MM/yy HH:mm");
-            String last_connected = dateFormat.format(new Date());
-            storeUserDefaultDataReference.child("last_connected").setValue(last_connected);
-            current_user = FirebaseDatabase.getInstance().getReference().child("Users").child(mAuth.getCurrentUser().getUid());
-            current_user.child("online").setValue("true");
-            current_user.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    if (des.Decrypt(dataSnapshot.child("user_type").getValue().toString(),KEY_).equals("admin")) {
-                        Intent mainIntent = new Intent(MainActivity.this, AdminActivity.class);
-                        mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        startActivity(mainIntent);
-                        finish();
-                    }
-                    else if(des.Decrypt(dataSnapshot.child("user_type").getValue().toString(),KEY_).equals("worker")&& !getIntent().hasExtra("from")){
-                        Intent mainIntent = new Intent(MainActivity.this, WorkerActivity.class);
-                        mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        startActivity(mainIntent);
-                        finish();
-                    }
-
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                }
-            });
         }
-    }
-
-    @Override
-    protected void onPause() {
-        current_user.child("online").setValue("false");
-        super.onPause();
     }
 
     public boolean checkDest(String str){
         return !str.equals("");
     }
-}
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case android.R.id.home: // Intercept the click on the home button
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+}

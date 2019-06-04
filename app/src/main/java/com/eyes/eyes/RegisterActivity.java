@@ -30,7 +30,8 @@ public class RegisterActivity extends AppCompatActivity {
     private Toolbar mToolbar;
 
     private ProgressDialog loadingBar;
-
+    private DesEncryption des = new DesEncryption();
+    private static final String KEY_ = "EYE#KEY1";
     private FirebaseAuth mAuth;
     private DatabaseReference storeUserDefaultDataReference;
 
@@ -101,14 +102,20 @@ public class RegisterActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
                                 String currentUserId = mAuth.getCurrentUser().getUid();
+                                String name = des.Encrypt(user.getName(),KEY_);
+                                String email = des.Encrypt(user.getEmail(),KEY_);
+                                String type = des.Encrypt(user.getTYPE(),KEY_);
+                                String pass = des.Encrypt(user.getPassword(),KEY_);
                                 storeUserDefaultDataReference = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId);
-                                storeUserDefaultDataReference.child("user_name").setValue(user.getName());
+                                storeUserDefaultDataReference.child("user_name").setValue(name);
                                 storeUserDefaultDataReference.child("language").setValue(user.getLanguage());
-                                storeUserDefaultDataReference.child("user_email").setValue(user.getEmail());
-                                storeUserDefaultDataReference.child("user_type").setValue(user.getTYPE());
+                                storeUserDefaultDataReference.child("user_email").setValue(email);
+                                storeUserDefaultDataReference.child("user_type").setValue(type);
                                 storeUserDefaultDataReference.child("records").setValue(0);
                                 storeUserDefaultDataReference.child("dest_counter").setValue(0);
+                                storeUserDefaultDataReference.child("online").setValue("false");
                                 storeUserDefaultDataReference.child("active").setValue("true");
+                                storeUserDefaultDataReference.child("user_password").setValue(pass);
 
                                 Calendar calendar = Calendar.getInstance();
                                 String created_date = DateFormat.getDateInstance().format(calendar.getTime());

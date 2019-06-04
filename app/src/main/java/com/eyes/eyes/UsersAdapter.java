@@ -34,6 +34,7 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UsersViewHol
         public TextView first;
         public TextView last;
         public ImageView activationImage;
+        public ImageView userStatus;
         public RelativeLayout layout;
 
         public UsersViewHolder(View itemView, final OnItemClickListener listener) {
@@ -43,6 +44,7 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UsersViewHol
             first = itemView.findViewById(R.id.first);
             last = itemView.findViewById(R.id.last);
             activationImage = itemView.findViewById(R.id.deactviate_user);
+            userStatus = itemView.findViewById(R.id.user_status);
             layout = itemView.findViewById(R.id.users_layout);
 
             activationImage.setOnClickListener(new View.OnClickListener() {
@@ -94,6 +96,12 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UsersViewHol
         {
             holder.activationImage.setImageResource(R.drawable.user_green);
             holder.layout.setBackgroundColor(Color.parseColor("#ffc2b3"));
+        }
+        if(current.getOnline().equals("true")){
+            holder.userStatus.setImageResource(R.drawable.online);
+        }
+        else{
+            holder.userStatus.setImageResource(R.drawable.offline);
         }
         holder.name.setText("name: " + current.getName());
         holder.email.setText("email: " + current.getEmail());

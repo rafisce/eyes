@@ -805,6 +805,7 @@ drawable abc_textfield_search_material
 drawable abc_vector_test
 drawable avd_hide_password
 drawable avd_show_password
+drawable checked
 drawable common_full_open_on_phone
 drawable common_google_signin_btn_icon_dark
 drawable common_google_signin_btn_icon_dark_focused
@@ -838,6 +839,7 @@ drawable ic_launcher_background
 drawable ic_launcher_foreground
 drawable ic_mic
 drawable language_settings
+drawable left
 drawable navigation_empty_icon
 drawable notification_action_background
 drawable notification_bg
@@ -851,13 +853,17 @@ drawable notification_template_icon_bg
 drawable notification_template_icon_low_bg
 drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
+drawable offline
+drawable online
 drawable power_off
 drawable report
+drawable right
 drawable speaker_off
 drawable speaker_on
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
 drawable unckecked
+drawable up
 drawable user_green
 drawable user_red
 drawable welcome
@@ -902,6 +908,7 @@ id blocking
 id bottom
 id btnSpeak
 id buttonPanel
+id cancel
 id cancel_action
 id center
 id center_horizontal
@@ -940,6 +947,7 @@ id destinations_toolbar
 id dests_report_admin
 id dimensions
 id direct
+id direction
 id disableHome
 id doc_toolbar
 id edit_query
@@ -1103,6 +1111,7 @@ id use_dest
 id user_docs
 id user_email_text_view
 id user_name_text_view
+id user_status
 id user_worker
 id users
 id users_layout
@@ -1167,7 +1176,8 @@ layout activity_input
 layout activity_last_connected
 layout activity_login
 layout activity_main
-layout activity_main_heb
+layout activity_main_worker
+layout activity_navigation
 layout activity_register
 layout activity_reports
 layout activity_start_page

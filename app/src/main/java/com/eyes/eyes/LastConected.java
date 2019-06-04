@@ -8,22 +8,25 @@ public class LastConected {
     private String type;
     private String uid;
     private String isActive;
+    public String online;
 
-    public LastConected(String nam,String tim,String isActive,String uid)
+    public LastConected(String nam,String tim,String isActive,String online,String uid)
     {
         name=nam;
         time=tim;
         this.isActive =isActive;
         this.uid = uid;
+        this.online = online;
     }
 
-    public LastConected(String name, String email, String joined, String time,String type,String isActive,String uid){
+    public LastConected(String name, String email, String joined, String time,String type,String isActive,String online,String uid){
         this.name = name;
         this.time = time;
         this.email = email;
         this.joined = joined;
         this.type = type;
         this.isActive =isActive;
+        this.online = online;
         this.uid = uid;
     }
 
@@ -46,6 +49,15 @@ public class LastConected {
     public String getType() {
         return type;
     }
+
+    public String getOnline() {
+        return online;
+    }
+
+    public void setOnline(String online) {
+        this.online = online;
+    }
+
     public String getUid() {
         return uid;
     }

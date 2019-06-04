@@ -63,6 +63,7 @@ public class LastConnectedActivity extends AppCompatActivity {
                         mRecyclerView.setLayoutManager(mLayoutManager);
                         mRecyclerView.setAdapter(mAdapter);
 
+
                         mAdapter.setOnItemClickListener(new LastConnectedAdapter.OnItemClickListener() {
                             @Override
                             public void onItemClick(int position) {
@@ -151,7 +152,7 @@ public class LastConnectedActivity extends AppCompatActivity {
             Map singleUser = (Map) entry.getValue();
             //Get phone field and append to list
             if (singleUser.get("user_type").equals("worker")) {
-                useList.add(new LastConected((String) singleUser.get("user_name"), (String) singleUser.get("last_connected"),(String) singleUser.get("active"),entry.getKey().toString()));
+                useList.add(new LastConected((String) singleUser.get("user_name"), (String) singleUser.get("last_connected"),(String) singleUser.get("active"),(String)singleUser.get("online"), entry.getKey().toString()));
             }
             Collections.sort(useList, new Comparator<LastConected>() {
                 public int compare(LastConected m1, LastConected m2) {

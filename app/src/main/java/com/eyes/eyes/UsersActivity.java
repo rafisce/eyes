@@ -24,8 +24,8 @@ public class UsersActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private UsersAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-
     private Toolbar mToolbar;
+    private static final String KEY_ = "EYE#KEY1";
 
     private ArrayList<LastConected> useList = new ArrayList<>();
 
@@ -41,7 +41,7 @@ public class UsersActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Users");
-        ref.addListenerForSingleValueEvent(
+        ref.addValueEventListener(
                 new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
@@ -130,18 +130,23 @@ public class UsersActivity extends AppCompatActivity {
                         //handle databaseError
                     }
                 });
+
+
     }
 
     public ArrayList<LastConected> collectUsers(Map<String,Object> users) {
         ArrayList<LastConected> useList = new ArrayList<>();
+
+        LoginActivity temp = new LoginActivity();
+        DesEncryption temp2 = new DesEncryption();
         //iterate through each user, ignoring their UID
         for (Map.Entry<String, Object> entry : users.entrySet()){
 
             //Get user map
             Map singleUser = (Map) entry.getValue();
-            //Get phone field and append to list
-            if(((String)singleUser.get("user_type")).equals("common")) {
-                useList.add(new LastConected((String) singleUser.get("user_name"),(String) singleUser.get("user_email"),(String) singleUser.get("create_date"),(String) singleUser.get("last_connected"),(String) singleUser.get("user_type"),(String) singleUser.get("active"),entry.getKey().toString()));
+            //Get phone field and append to lis
+            if(temp.checkCommon((String)singleUser.get("user_type"))) {
+                useList.add(new LastConected(temp2.Decrypt((String) singleUser.get("user_name"),KEY_),temp2.Decrypt((String) singleUser.get("user_email"),KEY_),(String) singleUser.get("create_date"),(String) singleUser.get("last_connected"),(String) singleUser.get("user_type"),(String) singleUser.get("active"),(String) singleUser.get("online"),entry.getKey().toString()));
             }
             Collections.sort(useList, new Comparator<LastConected>() {
                 public int compare(LastConected m1, LastConected m2) {

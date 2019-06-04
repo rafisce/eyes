@@ -46,11 +46,8 @@ public class WorkerActivity extends AppCompatActivity {
         as_user.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent mainIntent = new Intent(WorkerActivity.this, MainActivity.class);
-                mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                mainIntent.putExtra("from","worker");
+                Intent mainIntent = new Intent(WorkerActivity.this, MainActivityWorker.class);
                 startActivity(mainIntent);
-                finish();
             }
         });
 
