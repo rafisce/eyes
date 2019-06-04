@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -42,8 +43,6 @@ public class UserInfoActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         dest = (Button) findViewById(R.id.use_dest);
-
-
         mAuth = FirebaseAuth.getInstance();
         user = FirebaseDatabase.getInstance().getReference().child("Users").child(mAuth.getCurrentUser().getUid());
 
@@ -106,5 +105,16 @@ public class UserInfoActivity extends AppCompatActivity {
         DatabaseReference current_user = FirebaseDatabase.getInstance().getReference().child("Users").child(mAuth.getCurrentUser().getUid());
         current_user.child("online").setValue("false");
         super.onPause();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case android.R.id.home: // Intercept the click on the home button
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
@@ -29,9 +30,10 @@ public class ReportsActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private ReportAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-
     private Toolbar mToolbar;
+    private MediaPlayer mediaPlayer=null;
     private ArrayList<Report> reportList;
+    private static final String KEY_ = "EYE#KEY1";
 
 
     @Override
@@ -41,7 +43,7 @@ public class ReportsActivity extends AppCompatActivity {
 
         mToolbar = (Toolbar) findViewById(R.id.reports_toolbar);
         setSupportActionBar(mToolbar);
-        getSupportActionBar().setTitle("מנהל");
+        getSupportActionBar().setTitle("חזור");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
@@ -102,7 +104,7 @@ public class ReportsActivity extends AppCompatActivity {
 
 
     public void playAudio(String uri) {
-        MediaPlayer mediaPlayer = new MediaPlayer();
+         mediaPlayer = new MediaPlayer();
         try {
             mediaPlayer.setDataSource(uri);
         } catch (IOException e) {
@@ -122,5 +124,24 @@ public class ReportsActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
 
+        switch (item.getItemId()) {
+            case android.R.id.home: // Intercept the click on the home button
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onStop() {
+        if(mediaPlayer!=null){
+            mediaPlayer.stop();
+            mediaPlayer.release();
+            mediaPlayer=null;
+        }
+        super.onStop();
+    }
 }

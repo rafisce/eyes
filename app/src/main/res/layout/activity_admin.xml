@@ -42,11 +42,20 @@
         android:text="דוח יעדים" />
 
     <Button
+        android:id="@+id/sensors_admin"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/dests_report_admin"
+        android:layout_centerInParent="true"
+        android:layout_margin="5dp"
+        android:text="חיישנים" />
+
+    <Button
         android:id="@+id/create_worker"
         android:layout_width="300dp"
         android:layout_centerInParent="true"
         android:layout_height="wrap_content"
-        android:layout_below="@id/dests_report_admin"
+        android:layout_below="@id/sensors_admin"
         android:layout_margin="5dp"
         android:text="צור משתמש תפעולי" />
 

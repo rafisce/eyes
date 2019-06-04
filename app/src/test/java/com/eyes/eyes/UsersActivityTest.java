@@ -16,7 +16,7 @@ public class UsersActivityTest {
     public void collectUsers() {//סיפור 6
         Map<String, Object> user = new HashMap<String, Object>();
         ArrayList<LastConected> expected = new ArrayList<>();
-        expected.add(new LastConected("avi", "avi@avi.com", "Apr 13,2019", "14/04/19 12:19", "common","true","1"));
+        expected.add(new LastConected("avi", "avi@avi.com", "Apr 13,2019", "14/04/19 12:19", "common","true","true","1"));
         Map<String, Object> input = new HashMap<String, Object>();
         ArrayList<LastConected> output = new ArrayList<>();
         user.put("user_email", "avi@avi.com");

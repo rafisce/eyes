@@ -21,6 +21,7 @@ public class AdminActivity extends AppCompatActivity {
     private Button users;
     private Button dests;
     private Button create_worker;
+    private Button sensors;
     private FirebaseAuth mAuth;
 
     @Override
@@ -35,6 +36,14 @@ public class AdminActivity extends AppCompatActivity {
         dests = (Button) findViewById(R.id.dests_report_admin);
         users = (Button) findViewById(R.id.users);
         create_worker = (Button) findViewById(R.id.create_worker);
+        sensors = (Button)findViewById(R.id.sensors_admin);
+        sensors.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent lc = new Intent(AdminActivity.this, SensorActivity.class);
+                startActivity(lc);
+            }
+        });
         lastConnected.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

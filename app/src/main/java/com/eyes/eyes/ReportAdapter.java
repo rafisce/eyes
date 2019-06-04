@@ -39,7 +39,7 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ReportView
             name = itemView.findViewById(R.id.name);
             date = itemView.findViewById(R.id.date);
             play = itemView.findViewById(R.id.play);
-            check = itemView.findViewById(R.id.checked);
+            //check = itemView.findViewById(R.id.checked);
 
 
             play.setOnClickListener(new View.OnClickListener() {

@@ -59,21 +59,12 @@
             android:layout_height="match_parent"
             android:layout_alignTop="@+id/power_off"
             android:layout_alignParentEnd="true"
-            android:layout_marginEnd="64dp"
+            android:layout_marginEnd="12dp"
             android:adjustViewBounds="true"
             android:background="@null"
             android:scaleType="centerInside"
             android:src="@drawable/green_play" />
 
-        <ImageView
-            android:id="@+id/checked"
-            android:layout_width="54dp"
-            android:layout_height="match_parent"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginEnd="1dp"
-            android:layout_marginBottom="0dp"
-            app:srcCompat="@drawable/unckecked" />
 
     </RelativeLayout>
 

@@ -28,6 +28,7 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
@@ -53,6 +54,7 @@ import java.util.Locale;
 import java.util.Map;
 
 import static android.os.Looper.prepare;
+import static java.util.Locale.ENGLISH;
 
 public class MainActivity extends AppCompatActivity {
     private static final int REQUEST_CODE_SPEECH = 1000;
@@ -85,8 +87,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
-
-
         mAuth = FirebaseAuth.getInstance();
         mStorage = FirebaseStorage.getInstance().getReference();
         mToolbar = (Toolbar) findViewById(R.id.main_page_toolbar);
@@ -170,8 +170,7 @@ public class MainActivity extends AppCompatActivity {
 
                 } else if (event.getAction() == MotionEvent.ACTION_UP) {
                     stopRecording();
-                }
-                else if(event.getAction() == MotionEvent.ACTION_BUTTON_PRESS){
+                } else if (event.getAction() == MotionEvent.ACTION_BUTTON_PRESS) {
 
                 }
 
@@ -192,10 +191,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public String changeLanguage(String language) {
-        if (language.equals("eng"))
+        if (language.equals("eng")) {
+            Toast.makeText(MainActivity.this, "עברית", Toast.LENGTH_SHORT).show();
             return "heb";
-        else if(language.equals("heb"))
+        } else if (language.equals("heb")) {
+            Toast.makeText(MainActivity.this, "english", Toast.LENGTH_SHORT).show();
             return "eng";
+        }
         return "eng";
     }
 
@@ -302,7 +304,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         long count = (long) dataSnapshot.getValue();
-                        StorageReference filepath = mStorage.child("audio_report").child(String.valueOf(count));
+                        final StorageReference filepath = mStorage.child("audio_report").child(String.valueOf(count));
                         Uri uri = Uri.fromFile(new File(myFile));
                         count++;
                         DatabaseReference temp = FirebaseDatabase.getInstance().getReference().child("Reports_counter");
@@ -311,30 +313,65 @@ public class MainActivity extends AppCompatActivity {
                         filepath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                             @Override
                             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-
-                                final String tempUri = taskSnapshot.getMetadata().getReference().getDownloadUrl().toString();
-
-                                DatabaseReference tempUser = FirebaseDatabase.getInstance().getReference().child("Users").child(mAuth.getCurrentUser().getUid());
-                                tempUser.addListenerForSingleValueEvent(new ValueEventListener() {
+                                filepath.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                     @Override
-                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                        String usr = dataSnapshot.child("user_name").getValue().toString();
-                                        final String uri = tempUri;
-                                        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Reports").child(String.valueOf(finalCount - 1));
-                                        ref.child("number").setValue(String.valueOf(finalCount));
-                                        ref.child("uri").setValue(uri);
-                                        ref.child("user").setValue(usr);
-                                        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yy HH:mm");
-                                        String record_date = dateFormat.format(new Date());
-                                        ref.child("record_date").setValue(record_date);
-                                        mProgress.dismiss();
+                                    public void onSuccess(Uri uri) {
+                                        // Got the uri
+                                        final String tempUri = uri.toString();
+
+                                        DatabaseReference tempUser = FirebaseDatabase.getInstance().getReference().child("Users").child(mAuth.getCurrentUser().getUid());
+                                        tempUser.addListenerForSingleValueEvent(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                                DesEncryption des = new DesEncryption();
+                                                String usr = des.Decrypt(dataSnapshot.child("user_name").getValue().toString(), KEY_);
+                                                final String uri = tempUri;
+                                                DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Reports").child(String.valueOf(finalCount - 1));
+                                                ref.child("number").setValue(String.valueOf(finalCount));
+                                                ref.child("uri").setValue(uri);
+                                                ref.child("user").setValue(usr);
+                                                DateFormat dateFormat = new SimpleDateFormat("dd/MM/yy HH:mm");
+                                                String record_date = dateFormat.format(new Date());
+                                                ref.child("record_date").setValue(record_date);
+                                                mProgress.dismiss();
+                                            }
+
+                                            @Override
+                                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                            }
+                                        });
                                     }
-
+                                }).addOnFailureListener(new OnFailureListener() {
                                     @Override
-                                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                                    public void onFailure(@NonNull Exception exception) {
+                                        // Handle any errors
                                     }
                                 });
+//                                final String tempUri = taskSnapshot.getMetadata().getReference().getDownloadUrl().toString();
+//
+//                                DatabaseReference tempUser = FirebaseDatabase.getInstance().getReference().child("Users").child(mAuth.getCurrentUser().getUid());
+//                                tempUser.addListenerForSingleValueEvent(new ValueEventListener() {
+//                                    @Override
+//                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                                        DesEncryption des = new DesEncryption();
+//                                        String usr = des.Decrypt(dataSnapshot.child("user_name").getValue().toString(),KEY_);
+//                                        final String uri = tempUri;
+//                                        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Reports").child(String.valueOf(finalCount - 1));
+//                                        ref.child("number").setValue(String.valueOf(finalCount));
+//                                        ref.child("uri").setValue(uri);
+//                                        ref.child("user").setValue(usr);
+//                                        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yy HH:mm");
+//                                        String record_date = dateFormat.format(new Date());
+//                                        ref.child("record_date").setValue(record_date);
+//                                        mProgress.dismiss();
+//                                    }
+//
+//                                    @Override
+//                                    public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//                                    }
+//                                });
 
                             }
                         });
@@ -350,21 +387,37 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void speak() {
+        DatabaseReference temp = FirebaseDatabase.getInstance().getReference().child("Users").child(mAuth.getCurrentUser().getUid());
+        temp.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+                if (dataSnapshot.child("language").getValue().toString().equals("heb")) {
 
-//        Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-//        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-//        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
-//        intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "תאמר את היעד בבקשה");
-//
-//        try {
-//            startActivityForResult(intent, REQUEST_CODE_SPEECH);
-//        } catch (Exception e) {
-//
-//        }
+                    intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+                    intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
+                    intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "תאמר את היעד בבקשה");
+                } else {
 
-        Intent intent = new Intent(MainActivity.this, NavigationActivity.class);
-        intent.putExtra("destination","green");
-        startActivity(intent);
+                    intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+                    intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "en-US");
+                    intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "say your destination please");
+                }
+
+
+                try {
+                    startActivityForResult(intent, REQUEST_CODE_SPEECH);
+                } catch (Exception e) {
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
 
     }
@@ -378,14 +431,56 @@ public class MainActivity extends AppCompatActivity {
                     final ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
                     final String res = result.get(0);
                     if (checkDest(res)) {
-                        current_user2 = FirebaseDatabase.getInstance().getReference().child("Users").child(mAuth.getCurrentUser().getUid());
-                        current_user2.addListenerForSingleValueEvent(new ValueEventListener() {
+
+                        DatabaseReference bui = FirebaseDatabase.getInstance().getReference().child("Buildings");
+                        bui.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                                long count = (long) dataSnapshot.child("dest_counter").getValue();
-                                count++;
-                                current_user2.child("dest_counter").setValue(count);  // <= Change to ++count
+                                Map<String, Object> map = (Map<String, Object>) dataSnapshot.getValue();
+                                Object value = map.get(res);
+                                if (value != null) {
+                                    current_user2 = FirebaseDatabase.getInstance().getReference().child("Users").child(mAuth.getCurrentUser().getUid());
+                                    current_user2.addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(DataSnapshot dataSnapshot) {
+
+                                            long count = (long) dataSnapshot.child("dest_counter").getValue();
+                                            count++;
+                                            current_user2.child("dest_counter").setValue(count);  // <= Change to ++count
+
+                                        }
+
+                                        @Override
+                                        public void onCancelled(DatabaseError databaseError) {
+                                            // throw an error if setValue() is rejected
+                                            throw databaseError.toException();
+                                        }
+                                    });
+                                    current_user2 = FirebaseDatabase.getInstance().getReference().child("Users").child(mAuth.getCurrentUser().getUid());
+                                    current_user2.addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(DataSnapshot dataSnapshot) {
+
+                                            long count = (long) dataSnapshot.child("dest_counter").getValue();
+                                            current_user2.child("dest_list").child(String.valueOf(count)).setValue(res);
+                                            Intent intent = new Intent(MainActivity.this, NavigationActivity.class);
+                                            intent.putExtra("destination", res);
+                                            startActivity(intent);
+
+                                        }
+
+                                        @Override
+                                        public void onCancelled(DatabaseError databaseError) {
+                                            // throw an error if setValue() is rejected
+                                            throw databaseError.toException();
+                                        }
+                                    });
+
+
+                                } else {
+                                    Toast.makeText(MainActivity.this, "יעד לא קיים", Toast.LENGTH_SHORT).show();
+                                }  // <= Change to ++count
 
                             }
 
@@ -395,22 +490,7 @@ public class MainActivity extends AppCompatActivity {
                                 throw databaseError.toException();
                             }
                         });
-                        current_user2 = FirebaseDatabase.getInstance().getReference().child("Users").child(mAuth.getCurrentUser().getUid());
-                        current_user2.addListenerForSingleValueEvent(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(DataSnapshot dataSnapshot) {
 
-                                long count = (long) dataSnapshot.child("dest_counter").getValue();
-                                current_user2.child("dest_list").child(String.valueOf(count)).setValue(res);  // <= Change to ++count
-
-                            }
-
-                            @Override
-                            public void onCancelled(DatabaseError databaseError) {
-                                // throw an error if setValue() is rejected
-                                throw databaseError.toException();
-                            }
-                        });
                     }
                 }
             }
@@ -443,13 +523,12 @@ public class MainActivity extends AppCompatActivity {
             current_user.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    if (des.Decrypt(dataSnapshot.child("user_type").getValue().toString(),KEY_).equals("admin")) {
+                    if (des.Decrypt(dataSnapshot.child("user_type").getValue().toString(), KEY_).equals("admin")) {
                         Intent mainIntent = new Intent(MainActivity.this, AdminActivity.class);
                         mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(mainIntent);
                         finish();
-                    }
-                    else if(des.Decrypt(dataSnapshot.child("user_type").getValue().toString(),KEY_).equals("worker")&& !getIntent().hasExtra("from")){
+                    } else if (des.Decrypt(dataSnapshot.child("user_type").getValue().toString(), KEY_).equals("worker") && !getIntent().hasExtra("from")) {
                         Intent mainIntent = new Intent(MainActivity.this, WorkerActivity.class);
                         mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(mainIntent);
@@ -472,7 +551,7 @@ public class MainActivity extends AppCompatActivity {
         super.onPause();
     }
 
-    public boolean checkDest(String str){
+    public boolean checkDest(String str) {
         return !str.equals("");
     }
 }

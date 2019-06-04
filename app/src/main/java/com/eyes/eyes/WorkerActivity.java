@@ -19,6 +19,7 @@ public class WorkerActivity extends AppCompatActivity {
     private Button logout;
     private Button dests;
     private Button reports;
+    private Button sensors;
     private FirebaseAuth mAuth;
 
     @Override
@@ -31,6 +32,14 @@ public class WorkerActivity extends AppCompatActivity {
         info = (Button) findViewById(R.id.my_details);
         logout = (Button) findViewById(R.id.worker_logout);
         dests = (Button) findViewById(R.id.worker_dest);
+        sensors = (Button) findViewById(R.id.sensor_worker);
+        sensors.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent startPageIntent = new Intent(WorkerActivity.this, SensorActivity.class);
+                startActivity(startPageIntent);
+            }
+        });
 
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,9 +83,5 @@ public class WorkerActivity extends AppCompatActivity {
                 startActivity(dr);
             }
         });
-
-
-
-
     }
 }

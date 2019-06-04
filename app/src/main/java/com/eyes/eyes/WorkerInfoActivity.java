@@ -24,6 +24,7 @@ public class WorkerInfoActivity extends AppCompatActivity {
     private TextView lang;
     private TextView created_date;
     private Toolbar mToolbar;
+    private static final String KEY_ = "EYE#KEY1";
 
 
     @Override
@@ -48,9 +49,10 @@ public class WorkerInfoActivity extends AppCompatActivity {
         user.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                DesEncryption des = new DesEncryption();
 
-                user_name.setText("user: " + dataSnapshot.child("user_name").getValue().toString());
-                user_email.setText("email: " + dataSnapshot.child("user_email").getValue().toString());
+                user_name.setText("user: " + des.Decrypt(dataSnapshot.child("user_name").getValue().toString(),KEY_));
+                user_email.setText("email: " + des.Decrypt(dataSnapshot.child("user_email").getValue().toString(),KEY_));
                 lang.setText("language: " + dataSnapshot.child("language").getValue().toString());
                 created_date.setText("joined in: " + dataSnapshot.child("create_date").getValue().toString());
 

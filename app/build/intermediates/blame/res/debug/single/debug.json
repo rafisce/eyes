@@ -96,6 +96,10 @@
         "source": "C:\\Users\\rafi\\.gradle\\caches\\transforms-2\\files-2.1\\099ce4aa73edeaae7c341e11bad855bc\\res\\drawable-v23\\abc_control_background_material.xml"
     },
     {
+        "merged": "C:\\Users\\rafi\\AndroidStudioProjects\\eyes\\app\\build\\intermediates\\res\\merged\\debug\\raw_go_straight.mp3.flat",
+        "source": "C:\\Users\\rafi\\AndroidStudioProjects\\eyes\\app\\src\\main\\res\\raw\\go_straight.mp3"
+    },
+    {
         "merged": "C:\\Users\\rafi\\AndroidStudioProjects\\eyes\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_common_google_signin_btn_text_dark_normal_background.9.png.flat",
         "source": "C:\\Users\\rafi\\.gradle\\caches\\transforms-2\\files-2.1\\cd13614dfb27ca46065b6fdddabcc63d\\res\\drawable-hdpi-v4\\common_google_signin_btn_text_dark_normal_background.9.png"
     },
@@ -272,12 +276,12 @@
         "source": "C:\\Users\\rafi\\.gradle\\caches\\transforms-2\\files-2.1\\099ce4aa73edeaae7c341e11bad855bc\\res\\layout\\abc_list_menu_item_layout.xml"
     },
     {
-        "merged": "C:\\Users\\rafi\\AndroidStudioProjects\\eyes\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi_ic_launcher.png.flat",
-        "source": "C:\\Users\\rafi\\AndroidStudioProjects\\eyes\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher.png"
-    },
-    {
         "merged": "C:\\Users\\rafi\\AndroidStudioProjects\\eyes\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi_ic_launcher_round.png.flat",
         "source": "C:\\Users\\rafi\\AndroidStudioProjects\\eyes\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "C:\\Users\\rafi\\AndroidStudioProjects\\eyes\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\rafi\\AndroidStudioProjects\\eyes\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher.png"
     },
     {
         "merged": "C:\\Users\\rafi\\AndroidStudioProjects\\eyes\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_ic_menu_selectall_mtrl_alpha.png.flat",
@@ -448,12 +452,12 @@
         "source": "C:\\Users\\rafi\\.gradle\\caches\\transforms-2\\files-2.1\\099ce4aa73edeaae7c341e11bad855bc\\res\\drawable-mdpi-v4\\abc_ic_menu_share_mtrl_alpha.png"
     },
     {
-        "merged": "C:\\Users\\rafi\\AndroidStudioProjects\\eyes\\app\\build\\intermediates\\res\\merged\\debug\\drawable_common_google_signin_btn_text_dark_normal.xml.flat",
-        "source": "C:\\Users\\rafi\\.gradle\\caches\\transforms-2\\files-2.1\\cd13614dfb27ca46065b6fdddabcc63d\\res\\drawable\\common_google_signin_btn_text_dark_normal.xml"
-    },
-    {
         "merged": "C:\\Users\\rafi\\AndroidStudioProjects\\eyes\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_mic.png.flat",
         "source": "C:\\Users\\rafi\\AndroidStudioProjects\\eyes\\app\\src\\main\\res\\drawable-xhdpi\\ic_mic.png"
+    },
+    {
+        "merged": "C:\\Users\\rafi\\AndroidStudioProjects\\eyes\\app\\build\\intermediates\\res\\merged\\debug\\drawable_common_google_signin_btn_text_dark_normal.xml.flat",
+        "source": "C:\\Users\\rafi\\.gradle\\caches\\transforms-2\\files-2.1\\cd13614dfb27ca46065b6fdddabcc63d\\res\\drawable\\common_google_signin_btn_text_dark_normal.xml"
     },
     {
         "merged": "C:\\Users\\rafi\\AndroidStudioProjects\\eyes\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_text_select_handle_middle_mtrl_dark.png.flat",
@@ -532,12 +536,12 @@
         "source": "C:\\Users\\rafi\\.gradle\\caches\\transforms-2\\files-2.1\\099ce4aa73edeaae7c341e11bad855bc\\res\\drawable-xhdpi-v4\\abc_text_select_handle_right_mtrl_dark.png"
     },
     {
-        "merged": "C:\\Users\\rafi\\AndroidStudioProjects\\eyes\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_ic_star_black_16dp.png.flat",
-        "source": "C:\\Users\\rafi\\.gradle\\caches\\transforms-2\\files-2.1\\099ce4aa73edeaae7c341e11bad855bc\\res\\drawable-hdpi-v4\\abc_ic_star_black_16dp.png"
-    },
-    {
         "merged": "C:\\Users\\rafi\\AndroidStudioProjects\\eyes\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_list_selector_disabled_holo_light.9.png.flat",
         "source": "C:\\Users\\rafi\\.gradle\\caches\\transforms-2\\files-2.1\\099ce4aa73edeaae7c341e11bad855bc\\res\\drawable-mdpi-v4\\abc_list_selector_disabled_holo_light.9.png"
+    },
+    {
+        "merged": "C:\\Users\\rafi\\AndroidStudioProjects\\eyes\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_ic_star_black_16dp.png.flat",
+        "source": "C:\\Users\\rafi\\.gradle\\caches\\transforms-2\\files-2.1\\099ce4aa73edeaae7c341e11bad855bc\\res\\drawable-hdpi-v4\\abc_ic_star_black_16dp.png"
     },
     {
         "merged": "C:\\Users\\rafi\\AndroidStudioProjects\\eyes\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_textfield_search_activated_mtrl_alpha.9.png.flat",
@@ -552,12 +556,12 @@
         "source": "C:\\Users\\rafi\\.gradle\\caches\\transforms-2\\files-2.1\\099ce4aa73edeaae7c341e11bad855bc\\res\\drawable-ldrtl-xxxhdpi-v17\\abc_spinner_mtrl_am_alpha.9.png"
     },
     {
-        "merged": "C:\\Users\\rafi\\AndroidStudioProjects\\eyes\\app\\build\\intermediates\\res\\merged\\debug\\anim_abc_popup_enter.xml.flat",
-        "source": "C:\\Users\\rafi\\.gradle\\caches\\transforms-2\\files-2.1\\099ce4aa73edeaae7c341e11bad855bc\\res\\anim\\abc_popup_enter.xml"
-    },
-    {
         "merged": "C:\\Users\\rafi\\AndroidStudioProjects\\eyes\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi_ic_launcher.png.flat",
         "source": "C:\\Users\\rafi\\AndroidStudioProjects\\eyes\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\rafi\\AndroidStudioProjects\\eyes\\app\\build\\intermediates\\res\\merged\\debug\\anim_abc_popup_enter.xml.flat",
+        "source": "C:\\Users\\rafi\\.gradle\\caches\\transforms-2\\files-2.1\\099ce4aa73edeaae7c341e11bad855bc\\res\\anim\\abc_popup_enter.xml"
     },
     {
         "merged": "C:\\Users\\rafi\\AndroidStudioProjects\\eyes\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_abc_text_select_handle_left_mtrl_dark.png.flat",
@@ -758,6 +762,10 @@
     {
         "merged": "C:\\Users\\rafi\\AndroidStudioProjects\\eyes\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_abc_btn_radio_to_on_mtrl_015.png.flat",
         "source": "C:\\Users\\rafi\\.gradle\\caches\\transforms-2\\files-2.1\\099ce4aa73edeaae7c341e11bad855bc\\res\\drawable-xxxhdpi-v4\\abc_btn_radio_to_on_mtrl_015.png"
+    },
+    {
+        "merged": "C:\\Users\\rafi\\AndroidStudioProjects\\eyes\\app\\build\\intermediates\\res\\merged\\debug\\raw_turn_left.mp3.flat",
+        "source": "C:\\Users\\rafi\\AndroidStudioProjects\\eyes\\app\\src\\main\\res\\raw\\turn_left.mp3"
     },
     {
         "merged": "C:\\Users\\rafi\\AndroidStudioProjects\\eyes\\app\\build\\intermediates\\res\\merged\\debug\\layout_abc_action_mode_bar.xml.flat",
@@ -1056,6 +1064,10 @@
         "source": "C:\\Users\\rafi\\.gradle\\caches\\transforms-2\\files-2.1\\099ce4aa73edeaae7c341e11bad855bc\\res\\drawable-xxhdpi-v4\\abc_scrubber_track_mtrl_alpha.9.png"
     },
     {
+        "merged": "C:\\Users\\rafi\\AndroidStudioProjects\\eyes\\app\\build\\intermediates\\res\\merged\\debug\\layout_sensor_item.xml.flat",
+        "source": "C:\\Users\\rafi\\AndroidStudioProjects\\eyes\\app\\src\\main\\res\\layout\\sensor_item.xml"
+    },
+    {
         "merged": "C:\\Users\\rafi\\AndroidStudioProjects\\eyes\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi_ic_launcher.png.flat",
         "source": "C:\\Users\\rafi\\AndroidStudioProjects\\eyes\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher.png"
     },
@@ -1144,16 +1156,16 @@
         "source": "C:\\Users\\rafi\\.gradle\\caches\\transforms-2\\files-2.1\\df63c701004c765fc5567f18cb727e47\\res\\drawable-xxhdpi-v4\\design_ic_visibility.png"
     },
     {
+        "merged": "C:\\Users\\rafi\\AndroidStudioProjects\\eyes\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_right.png.flat",
+        "source": "C:\\Users\\rafi\\AndroidStudioProjects\\eyes\\app\\src\\main\\res\\drawable-xhdpi\\right.png"
+    },
+    {
         "merged": "C:\\Users\\rafi\\AndroidStudioProjects\\eyes\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_tab_indicator_mtrl_alpha.9.png.flat",
         "source": "C:\\Users\\rafi\\.gradle\\caches\\transforms-2\\files-2.1\\099ce4aa73edeaae7c341e11bad855bc\\res\\drawable-xhdpi-v4\\abc_tab_indicator_mtrl_alpha.9.png"
     },
     {
         "merged": "C:\\Users\\rafi\\AndroidStudioProjects\\eyes\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_abc_btn_switch_to_on_mtrl_00012.9.png.flat",
         "source": "C:\\Users\\rafi\\.gradle\\caches\\transforms-2\\files-2.1\\099ce4aa73edeaae7c341e11bad855bc\\res\\drawable-xxxhdpi-v4\\abc_btn_switch_to_on_mtrl_00012.9.png"
-    },
-    {
-        "merged": "C:\\Users\\rafi\\AndroidStudioProjects\\eyes\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_right.png.flat",
-        "source": "C:\\Users\\rafi\\AndroidStudioProjects\\eyes\\app\\src\\main\\res\\drawable-xhdpi\\right.png"
     },
     {
         "merged": "C:\\Users\\rafi\\AndroidStudioProjects\\eyes\\app\\build\\intermediates\\res\\merged\\debug\\drawable_common_google_signin_btn_icon_light.xml.flat",
@@ -1188,12 +1200,12 @@
         "source": "C:\\Users\\rafi\\.gradle\\caches\\transforms-2\\files-2.1\\099ce4aa73edeaae7c341e11bad855bc\\res\\drawable-xxhdpi-v4\\abc_ic_star_black_16dp.png"
     },
     {
-        "merged": "C:\\Users\\rafi\\AndroidStudioProjects\\eyes\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_ic_star_half_black_48dp.png.flat",
-        "source": "C:\\Users\\rafi\\.gradle\\caches\\transforms-2\\files-2.1\\099ce4aa73edeaae7c341e11bad855bc\\res\\drawable-xhdpi-v4\\abc_ic_star_half_black_48dp.png"
-    },
-    {
         "merged": "C:\\Users\\rafi\\AndroidStudioProjects\\eyes\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_up.png.flat",
         "source": "C:\\Users\\rafi\\AndroidStudioProjects\\eyes\\app\\src\\main\\res\\drawable-xhdpi\\up.png"
+    },
+    {
+        "merged": "C:\\Users\\rafi\\AndroidStudioProjects\\eyes\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_ic_star_half_black_48dp.png.flat",
+        "source": "C:\\Users\\rafi\\.gradle\\caches\\transforms-2\\files-2.1\\099ce4aa73edeaae7c341e11bad855bc\\res\\drawable-xhdpi-v4\\abc_ic_star_half_black_48dp.png"
     },
     {
         "merged": "C:\\Users\\rafi\\AndroidStudioProjects\\eyes\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_destination_report.xml.flat",
@@ -1372,6 +1384,10 @@
         "source": "C:\\Users\\rafi\\.gradle\\caches\\transforms-2\\files-2.1\\099ce4aa73edeaae7c341e11bad855bc\\res\\drawable\\abc_cab_background_top_material.xml"
     },
     {
+        "merged": "C:\\Users\\rafi\\AndroidStudioProjects\\eyes\\app\\build\\intermediates\\res\\merged\\debug\\raw_turn_right.mp3.flat",
+        "source": "C:\\Users\\rafi\\AndroidStudioProjects\\eyes\\app\\src\\main\\res\\raw\\turn_right.mp3"
+    },
+    {
         "merged": "C:\\Users\\rafi\\AndroidStudioProjects\\eyes\\app\\build\\intermediates\\res\\merged\\debug\\color-v23_design_tint_password_toggle.xml.flat",
         "source": "C:\\Users\\rafi\\.gradle\\caches\\transforms-2\\files-2.1\\df63c701004c765fc5567f18cb727e47\\res\\color-v23\\design_tint_password_toggle.xml"
     },
@@ -1428,12 +1444,12 @@
         "source": "C:\\Users\\rafi\\.gradle\\caches\\transforms-2\\files-2.1\\099ce4aa73edeaae7c341e11bad855bc\\res\\layout\\abc_popup_menu_item_layout.xml"
     },
     {
-        "merged": "C:\\Users\\rafi\\AndroidStudioProjects\\eyes\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_design_ic_visibility_off.png.flat",
-        "source": "C:\\Users\\rafi\\.gradle\\caches\\transforms-2\\files-2.1\\df63c701004c765fc5567f18cb727e47\\res\\drawable-hdpi-v4\\design_ic_visibility_off.png"
-    },
-    {
         "merged": "C:\\Users\\rafi\\AndroidStudioProjects\\eyes\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_list_selector_disabled_holo_light.9.png.flat",
         "source": "C:\\Users\\rafi\\.gradle\\caches\\transforms-2\\files-2.1\\099ce4aa73edeaae7c341e11bad855bc\\res\\drawable-hdpi-v4\\abc_list_selector_disabled_holo_light.9.png"
+    },
+    {
+        "merged": "C:\\Users\\rafi\\AndroidStudioProjects\\eyes\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_design_ic_visibility_off.png.flat",
+        "source": "C:\\Users\\rafi\\.gradle\\caches\\transforms-2\\files-2.1\\df63c701004c765fc5567f18cb727e47\\res\\drawable-hdpi-v4\\design_ic_visibility_off.png"
     },
     {
         "merged": "C:\\Users\\rafi\\AndroidStudioProjects\\eyes\\app\\build\\intermediates\\res\\merged\\debug\\drawable_tooltip_frame_light.xml.flat",
@@ -1490,6 +1506,10 @@
     {
         "merged": "C:\\Users\\rafi\\AndroidStudioProjects\\eyes\\app\\build\\intermediates\\res\\merged\\debug\\layout_abc_list_menu_item_icon.xml.flat",
         "source": "C:\\Users\\rafi\\.gradle\\caches\\transforms-2\\files-2.1\\099ce4aa73edeaae7c341e11bad855bc\\res\\layout\\abc_list_menu_item_icon.xml"
+    },
+    {
+        "merged": "C:\\Users\\rafi\\AndroidStudioProjects\\eyes\\app\\build\\intermediates\\res\\merged\\debug\\raw_reached.mp3.flat",
+        "source": "C:\\Users\\rafi\\AndroidStudioProjects\\eyes\\app\\src\\main\\res\\raw\\reached.mp3"
     },
     {
         "merged": "C:\\Users\\rafi\\AndroidStudioProjects\\eyes\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_tab_indicator_mtrl_alpha.9.png.flat",
@@ -1748,6 +1768,10 @@
         "source": "C:\\Users\\rafi\\.gradle\\caches\\transforms-2\\files-2.1\\099ce4aa73edeaae7c341e11bad855bc\\res\\drawable-mdpi-v4\\abc_ic_star_half_black_48dp.png"
     },
     {
+        "merged": "C:\\Users\\rafi\\AndroidStudioProjects\\eyes\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_sensor.xml.flat",
+        "source": "C:\\Users\\rafi\\AndroidStudioProjects\\eyes\\app\\src\\main\\res\\layout\\activity_sensor.xml"
+    },
+    {
         "merged": "C:\\Users\\rafi\\AndroidStudioProjects\\eyes\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_list_divider_mtrl_alpha.9.png.flat",
         "source": "C:\\Users\\rafi\\.gradle\\caches\\transforms-2\\files-2.1\\099ce4aa73edeaae7c341e11bad855bc\\res\\drawable-xxhdpi-v4\\abc_list_divider_mtrl_alpha.9.png"
     },
@@ -1820,12 +1844,12 @@
         "source": "C:\\Users\\rafi\\.gradle\\caches\\transforms-2\\files-2.1\\099ce4aa73edeaae7c341e11bad855bc\\res\\drawable-xxhdpi-v4\\abc_btn_check_to_on_mtrl_000.png"
     },
     {
-        "merged": "C:\\Users\\rafi\\AndroidStudioProjects\\eyes\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_design_ic_visibility_off.png.flat",
-        "source": "C:\\Users\\rafi\\.gradle\\caches\\transforms-2\\files-2.1\\df63c701004c765fc5567f18cb727e47\\res\\drawable-xhdpi-v4\\design_ic_visibility_off.png"
-    },
-    {
         "merged": "C:\\Users\\rafi\\AndroidStudioProjects\\eyes\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_navigation.xml.flat",
         "source": "C:\\Users\\rafi\\AndroidStudioProjects\\eyes\\app\\src\\main\\res\\layout\\activity_navigation.xml"
+    },
+    {
+        "merged": "C:\\Users\\rafi\\AndroidStudioProjects\\eyes\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_design_ic_visibility_off.png.flat",
+        "source": "C:\\Users\\rafi\\.gradle\\caches\\transforms-2\\files-2.1\\df63c701004c765fc5567f18cb727e47\\res\\drawable-xhdpi-v4\\design_ic_visibility_off.png"
     },
     {
         "merged": "C:\\Users\\rafi\\AndroidStudioProjects\\eyes\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_ic_menu_cut_mtrl_alpha.png.flat",
@@ -1884,12 +1908,12 @@
         "source": "C:\\Users\\rafi\\.gradle\\caches\\transforms-2\\files-2.1\\a7f1074b3e2c0e49b2007fd7f10ad27f\\res\\drawable-hdpi-v4\\notification_bg_normal.9.png"
     },
     {
-        "merged": "C:\\Users\\rafi\\AndroidStudioProjects\\eyes\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_text_select_handle_middle_mtrl_dark.png.flat",
-        "source": "C:\\Users\\rafi\\.gradle\\caches\\transforms-2\\files-2.1\\099ce4aa73edeaae7c341e11bad855bc\\res\\drawable-hdpi-v4\\abc_text_select_handle_middle_mtrl_dark.png"
-    },
-    {
         "merged": "C:\\Users\\rafi\\AndroidStudioProjects\\eyes\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_offline.png.flat",
         "source": "C:\\Users\\rafi\\AndroidStudioProjects\\eyes\\app\\src\\main\\res\\drawable-xhdpi\\offline.png"
+    },
+    {
+        "merged": "C:\\Users\\rafi\\AndroidStudioProjects\\eyes\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_text_select_handle_middle_mtrl_dark.png.flat",
+        "source": "C:\\Users\\rafi\\.gradle\\caches\\transforms-2\\files-2.1\\099ce4aa73edeaae7c341e11bad855bc\\res\\drawable-hdpi-v4\\abc_text_select_handle_middle_mtrl_dark.png"
     },
     {
         "merged": "C:\\Users\\rafi\\AndroidStudioProjects\\eyes\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_text_select_handle_left_mtrl_dark.png.flat",

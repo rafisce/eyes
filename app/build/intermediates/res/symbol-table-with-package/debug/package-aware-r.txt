@@ -915,7 +915,6 @@ id center_horizontal
 id center_vertical
 id chains
 id checkbox
-id checked
 id chronometer
 id clip_horizontal
 id clip_vertical
@@ -1010,6 +1009,10 @@ id my_details
 id name
 id navigation_header_container
 id need_account_button
+id neig1
+id neig2
+id neig3
+id neig4
 id never
 id none
 id normal
@@ -1061,6 +1064,9 @@ id search_plate
 id search_src_text
 id search_voice_btn
 id select_dialog_listview
+id sensor_toolbar
+id sensor_worker
+id sensors_admin
 id shortcut
 id showCustom
 id showHome
@@ -1180,6 +1186,7 @@ layout activity_main_worker
 layout activity_navigation
 layout activity_register
 layout activity_reports
+layout activity_sensor
 layout activity_start_page
 layout activity_user_info
 layout activity_users
@@ -1223,10 +1230,15 @@ layout report_item
 layout select_dialog_item_material
 layout select_dialog_multichoice_material
 layout select_dialog_singlechoice_material
+layout sensor_item
 layout support_simple_spinner_dropdown_item
 layout user_item
 mipmap ic_launcher
 mipmap ic_launcher_round
+raw go_straight
+raw reached
+raw turn_left
+raw turn_right
 string abc_action_bar_home_description
 string abc_action_bar_up_description
 string abc_action_menu_overflow_description

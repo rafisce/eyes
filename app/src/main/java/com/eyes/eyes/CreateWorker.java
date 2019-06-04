@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -35,6 +36,7 @@ public class CreateWorker extends AppCompatActivity {
     private Button createAccountBtn;
     private FirebaseAuth mAuth1;
     private FirebaseAuth mAuth2;
+    private static final String KEY_ = "EYE#KEY1";
 
 
 
@@ -104,11 +106,12 @@ public class CreateWorker extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
                                 String currentUserId = mAuth2.getCurrentUser().getUid();
+                                DesEncryption des = new DesEncryption();
                                 storeUserDefaultDataReference = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId);
-                                storeUserDefaultDataReference.child("user_name").setValue(user.getName());
+                                storeUserDefaultDataReference.child("user_name").setValue(des.Encrypt(user.getName(),KEY_));
                                 storeUserDefaultDataReference.child("language").setValue(user.getLanguage());
-                                storeUserDefaultDataReference.child("user_email").setValue(user.getEmail());
-                                storeUserDefaultDataReference.child("user_type").setValue(user.getTYPE());
+                                storeUserDefaultDataReference.child("user_email").setValue(des.Encrypt(user.getEmail(),KEY_));
+                                storeUserDefaultDataReference.child("user_type").setValue(des.Encrypt(user.getTYPE(),KEY_));
                                 storeUserDefaultDataReference.child("records").setValue(0);
                                 storeUserDefaultDataReference.child("dest_counter").setValue(0);
                                 storeUserDefaultDataReference.child("active").setValue("true");
@@ -124,7 +127,7 @@ public class CreateWorker extends AppCompatActivity {
 
                                                 {
                                                     mAuth2.signOut();
-                                                    Toast.makeText(CreateWorker.this, "משתמש נוצר בהצלחה", Toast.LENGTH_LONG);
+                                                    Toast.makeText(CreateWorker.this, "משתמש נוצר בהצלחה", Toast.LENGTH_SHORT).show();
 
                                                 }
 
@@ -140,6 +143,17 @@ public class CreateWorker extends AppCompatActivity {
                         }
                     });
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case android.R.id.home: // Intercept the click on the home button
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
 

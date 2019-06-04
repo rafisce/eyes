@@ -1,11 +1,13 @@
 package com.eyes.eyes;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.media.MediaPlayer;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -37,16 +39,18 @@ public class NavigationActivity extends AppCompatActivity {
     private ImageView imgView;
     private Button cancel;
     private DatabaseReference sensors;
-    private String dest=null;
-    int[] imageArray = { R.drawable.right, R.drawable.left, R.drawable.up,R.drawable.checked};
-    int count=0;
-    
+    private MediaPlayer mPlayer;
+    private String dest = null;
+    int[] imageArray = {R.drawable.right, R.drawable.left, R.drawable.up, R.drawable.checked};
+    int count = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation);
 
+        mPlayer = MediaPlayer.create(NavigationActivity.this, R.raw.turn_left);
 
         if (getIntent().hasExtra("destination")) {
             dest = getIntent().getStringExtra("destination");
@@ -57,22 +61,21 @@ public class NavigationActivity extends AppCompatActivity {
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                stopPlaying();
                 finish();
             }
         });
 
 
-
-        DatabaseReference refUri = FirebaseDatabase.getInstance().getReference().child("Buildings");
-        refUri.addListenerForSingleValueEvent(new ValueEventListener() {
+        sensors = FirebaseDatabase.getInstance().getReference().child("Buildings");
+        sensors.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                if(dest!=null) {
+                if (dest != null) {
+
                     navigate((Map<String, Object>) dataSnapshot.getValue(), dest);
                 }
-
-
 
 
             }
@@ -113,16 +116,16 @@ public class NavigationActivity extends AppCompatActivity {
         dijkstra.computePath(getVer("white", vertexs));
 
         final List<Vertex> path = dijkstra.getShortestPathTo(getVer(b, vertexs));
-        final Map<Integer,Map<String,String>> path2 = new HashMap<Integer, Map<String, String>>();
+        final Map<Integer, Map<String, String>> path2 = new HashMap<Integer, Map<String, String>>();
 
-        for(int i=0;i<path.size();i++){
-            if(i!=path.size()-1){
-                String name=path.get(i+1).toString();
+        for (int i = 0; i < path.size(); i++) {
+            if (i != path.size() - 1) {
+                String name = path.get(i + 1).toString();
                 final String dir = path.get(i).getEdge(name).getDir();
                 final Double distance = path.get(i).getEdge(name).getWeight();
-                path2.put(i,new HashMap<String,String>() {{
+                path2.put(i, new HashMap<String, String>() {{
                     put("distance", Double.toString(distance));
-                    put("direction",dir);
+                    put("direction", dir);
                 }});
             }
         }
@@ -130,31 +133,31 @@ public class NavigationActivity extends AppCompatActivity {
         final Handler handler = new Handler();
         Runnable runnable = new Runnable() {
             public void run() {
-                Double dist = Double.parseDouble(path2.get(count).get("distance"));
-                String dire = path2.get(count).get("direction");
-                if(dire.equals("right")){
-                    System.out.println("right");
-                    imgView.setImageBitmap(decodeSampledBitmapFromResource(getResources(), imageArray[0], 100, 100));
+                if (count < path2.size()) {
+                    Double dist = Double.parseDouble(path2.get(count).get("distance"));
+                    String dire = path2.get(count).get("direction");
+                    handler.postDelayed(this, 2000 * (long) Math.floor(dist + 0.5d));
+                    if (dire.equals("right")) {
+                        System.out.println("right");
+                        play(0);
+                        imgView.setImageBitmap(decodeSampledBitmapFromResource(getResources(), imageArray[0], 100, 100));
+                    } else if (dire.equals("left")) {
+                        play(1);
+                        System.out.println("left");
+                        imgView.setImageBitmap(decodeSampledBitmapFromResource(getResources(), imageArray[1], 100, 100));
+                    } else {
+                        play(2);
+                        System.out.println("up");
+                        imgView.setImageBitmap(decodeSampledBitmapFromResource(getResources(), imageArray[2], 100, 100));
+                    }
                 }
-                else if(dire.equals("left"))
-                {
-                    System.out.println("left");
-                    imgView.setImageBitmap(decodeSampledBitmapFromResource(getResources(), imageArray[1], 100, 100));
-                }
-                else
-                {
-                    System.out.println("up");
-                    imgView.setImageBitmap(decodeSampledBitmapFromResource(getResources(), imageArray[2], 100, 100));
-                }
-
-                count++;
-
-                handler.postDelayed(this, 2000*(long)Math.floor(dist + 0.5d));
-                if(count>path2.size()-1)
-                {
+                if (count > path2.size() - 1) {
+                    play(3);
                     imgView.setImageBitmap(decodeSampledBitmapFromResource(getResources(), imageArray[3], 100, 100));
+                    cancel.setText("חזור");
                     handler.removeCallbacksAndMessages(null);
-                }//for interval...
+                }
+                count++;//for interval...
             }
         };
         handler.postDelayed(runnable, 1000);
@@ -171,8 +174,9 @@ public class NavigationActivity extends AppCompatActivity {
         }
         return null;
     }
+
     public static Bitmap decodeSampledBitmapFromResource(Resources res, int resId,
-                                                          int reqWidth, int reqHeight) {
+                                                         int reqWidth, int reqHeight) {
 
         // First decode with inJustDecodeBounds=true to check dimensions
         final BitmapFactory.Options options = new BitmapFactory.Options();
@@ -189,7 +193,6 @@ public class NavigationActivity extends AppCompatActivity {
 
     public static int calculateInSampleSize(
             BitmapFactory.Options options, int reqWidth, int reqHeight) {
-        // Raw height and width of image
         final int height = options.outHeight;
         final int width = options.outWidth;
         int inSampleSize = 1;
@@ -220,6 +223,30 @@ public class NavigationActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    public void play(int rec) {
+        stopPlaying();
+        if (rec == 0) {
+            mPlayer = MediaPlayer.create(NavigationActivity.this, R.raw.turn_right);
+        } else if (rec == 1) {
+            mPlayer = MediaPlayer.create(NavigationActivity.this, R.raw.turn_left);
+        } else if (rec == 2) {
+            mPlayer = MediaPlayer.create(NavigationActivity.this, R.raw.go_straight);
+        } else if (rec == 3) {
+            mPlayer = MediaPlayer.create(NavigationActivity.this, R.raw.reached);
+        }
+        mPlayer.start();
+
+    }
+
+    private void stopPlaying() {
+        if (mPlayer != null) {
+            mPlayer.stop();
+            mPlayer.release();
+            mPlayer = null;
+        }
+    }
+
 }
 
 

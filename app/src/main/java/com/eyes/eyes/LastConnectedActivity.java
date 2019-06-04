@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -31,6 +32,7 @@ public class LastConnectedActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private LastConnectedAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
+    private static final String KEY_ = "EYE#KEY1";
 
     private Toolbar mToolbar;
 
@@ -145,14 +147,15 @@ public class LastConnectedActivity extends AppCompatActivity {
     public ArrayList<LastConected> collectUsers(Map<String, Object> users) {
 
         ArrayList<LastConected> useList = new ArrayList<>();
+        DesEncryption des = new DesEncryption();
         //iterate through each user, ignoring their UID
         for (Map.Entry<String, Object> entry : users.entrySet()) {
 
             //Get user map
             Map singleUser = (Map) entry.getValue();
             //Get phone field and append to list
-            if (singleUser.get("user_type").equals("worker")) {
-                useList.add(new LastConected((String) singleUser.get("user_name"), (String) singleUser.get("last_connected"),(String) singleUser.get("active"),(String)singleUser.get("online"), entry.getKey().toString()));
+            if (isWorker(des.Decrypt((String) singleUser.get("user_type"),KEY_))) {
+                useList.add(new LastConected(des.Decrypt((String) singleUser.get("user_name"),KEY_), (String) singleUser.get("last_connected"),(String) singleUser.get("active"),(String)singleUser.get("online"), entry.getKey().toString()));
             }
             Collections.sort(useList, new Comparator<LastConected>() {
                 public int compare(LastConected m1, LastConected m2) {
@@ -164,6 +167,23 @@ public class LastConnectedActivity extends AppCompatActivity {
 
         }
         return useList;
+    }
+
+    boolean isWorker(String str){
+        return str.equals("worker");
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case android.R.id.home: // Intercept the click on the home button
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+
     }
 
 }
